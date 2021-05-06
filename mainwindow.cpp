@@ -14,10 +14,6 @@
 #include "ui_mainwindow.h"
 #include "ccviewer3d.h"
 
-#include "Input.h"
-#include "Analysis.h"
-#include "FeatureManager.h"
-
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), 
 	mActionGlobalZoom(new QAction(this)), 
@@ -97,6 +93,11 @@ MainWindow::~MainWindow()
 	delete mCCViewer3D;
 	delete containerLabel;
 	delete scrollAreaLabel;
+
+	//delete input;
+	//delete analysis;
+	//delete featureManager;
+	//delete classifier;
 }
 
 void MainWindow::initComponents() {
@@ -169,12 +170,12 @@ void MainWindow::initComponents() {
 
 	// Dock Label
 	initDockLabel();
+
 }
 
 void MainWindow::initSignalsAndSlots() {
 	//Menu file
 	connect(ui->actionOpen,   &QAction::triggered, this, &MainWindow::open);
- 
 	//Barra de herramientas del visor
 	connect(mActionGlobalZoom, SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setGlobalZoom()));
 	connect(mActionViewFront,  SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setFrontView()));
@@ -183,20 +184,6 @@ void MainWindow::initSignalsAndSlots() {
 	connect(mActionViewBottom, SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setBottomView()));
 	connect(mActionViewLeft,   SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setLeftView()));
 	connect(mActionViewRight,  SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setRightView()));
-}
-
-void MainWindow::initDockLabel() {
-	containerLabel = new Container(this, "Container Label");
-	/*
-	for (int i = 0; i < 100; i++) {
-		QLabel* label = new QLabel(containerLabel);
-		label->setText("This is a widget!");
-		containerLabel->addWidget(label);
-	}
-	*/
-	scrollAreaLabel = new QScrollArea;
-	scrollAreaLabel->setWidget(containerLabel);
-	ui->dockLabel->setWidget(scrollAreaLabel);
 }
 
 void MainWindow::changeEvent(QEvent* e) {
@@ -211,5 +198,31 @@ void MainWindow::changeEvent(QEvent* e) {
 }
 
 void MainWindow::open() {
-
+	ui->statusBar->showMessage(tr("Open Cloud Point File"));
+	QString file = QFileDialog::getOpenFileName(this, tr("Open Point Cloud File"), "../Data", tr("PLY (*.ply)"));
+	if (!file.isEmpty()) {
+		mCCViewer3D->clear();
+		mCCViewer3D->loadFromFile(file);
+		mCCViewer3D->setGlobalZoom();
+		input = new Input(file.toLocal8Bit().constData());
+	}
 }
+
+void MainWindow::initDockLabel() {
+	containerLabel = new Container(this, "Container Label");
+
+	for(int i = 0; i < 10; i ++)
+		addLabel();
+
+	scrollAreaLabel = new QScrollArea;
+	scrollAreaLabel->setWidget(containerLabel);
+	ui->dockLabel->setWidget(scrollAreaLabel);
+}
+
+void MainWindow::addLabel() {
+	static unsigned int index = 0;
+	std::string widgetName = "label" + std::to_string(++index);
+	LabelView* labelView = new LabelView("Ground", containerLabel, widgetName.c_str());
+	containerLabel->addWidget(labelView);
+}
+

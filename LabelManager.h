@@ -18,8 +18,17 @@ struct Label {
 	Label(const std::string& _text, LabelHandle& _handle, const Color& _color)
 		: text(_text), handle(_handle), color(_color) {
 	}
+	Label(const Label& label) 
+		: text(label.text), handle(label.handle), color(label.color) {
+	}
 	Label() = default;
 	~Label() = default;
+
+	void operator=(const Label& label) {
+		text = label.text;
+		handle = label.handle;
+		color = label.color;
+	}
 };
 
 class LabelManager {

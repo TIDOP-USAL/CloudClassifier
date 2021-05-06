@@ -17,4 +17,8 @@ public:
 	inline void addWidget(QWidget* widget) {
 		layout->addWidget(widget);
 	}
+	
+	inline QVBoxLayout* getLayout() {
+		return layout;
+	}
 };
