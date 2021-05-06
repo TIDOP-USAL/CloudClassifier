@@ -1,0 +1,27 @@
+set(SOURCES
+	${SOURCES}
+	src/main.cpp
+	src/mainwindow.cpp
+	src/ccviewer3d.cpp
+	src/Classifier.cpp
+	src/Analysis.cpp
+	src/FeatureManager.cpp
+	src/Input.cpp
+	src/LabelManager.cpp
+	src/Container.cpp
+	PARENT_SCOPE)
+	
+set(HEADERS
+   ${HEADERS}
+	src/mainwindow.h
+	src/mainwindow.ui
+	src/ccviewer3d.h
+	src/Classifier.h
+	src/Analysis.h
+	src/FeatureManager.h
+	src/Input.h
+	src/LabelManager.h
+	src/EffectGroup.h
+	src/WeightGroup.h
+	src/Container.h
+	PARENT_SCOPE)
