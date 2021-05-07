@@ -3,13 +3,13 @@
 
 #include <QMainWindow>
 #include <QScrollArea>
+#include <QListWidget>
 
 #include "Input.h"
 #include "Analysis.h"
 #include "FeatureManager.h"
 #include "Classifier.h"
 
-#include "Container.h"
 #include "LabelView.h"
 
 class CCViewer3D;
@@ -35,8 +35,10 @@ private:
 	QAction* mActionViewBottom;
 	QToolBar* mToolBar3dModel;
 
-	Container* containerLabel;
-	QScrollArea* scrollAreaLabel;
+	QAction* actionAddLabel;
+	QToolBar* classifierToolBar;
+
+	QListWidget* listWidgetLabel;
 
 	Input* input;
 	Analysis* analysis;
@@ -46,12 +48,12 @@ private:
 	void initComponents();
 	void initSignalsAndSlots();
 
-	void initDockLabel();
-	void addLabel();
+	void initDocks();
 protected:
 	void changeEvent(QEvent* e);
 protected slots:
 	void open();
+	void addLabel();
 public:
 	explicit MainWindow(QWidget *parent = nullptr);
 	~MainWindow();

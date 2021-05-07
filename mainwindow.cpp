@@ -22,7 +22,12 @@ MainWindow::MainWindow(QWidget *parent)
 	mActionViewLeft(new QAction(this)), 
 	mActionViewRight(new QAction(this)), 
 	mActionViewBack(new QAction(this)),
-	mActionViewBottom(new QAction(this)) {
+	mActionViewBottom(new QAction(this)),
+	actionAddLabel(new QAction(this)),
+	input(nullptr), 
+	analysis(nullptr), 
+	featureManager(nullptr), 
+	classifier(nullptr) {
 		
 	
 	initComponents();
@@ -79,25 +84,11 @@ MainWindow::MainWindow(QWidget *parent)
 	*/
 }
 
-MainWindow::~MainWindow()
-{
-	delete ui;
-	delete mActionGlobalZoom;
-	delete mActionViewFront;
-	delete mActionViewTop;
-	delete mActionViewLeft;
-	delete mActionViewRight;
-	delete mActionViewBack;
-	delete mActionViewBottom;
-	delete mToolBar3dModel;
-	delete mCCViewer3D;
-	delete containerLabel;
-	delete scrollAreaLabel;
-
-	//delete input;
-	//delete analysis;
-	//delete featureManager;
-	//delete classifier;
+MainWindow::~MainWindow() {
+	if (input != nullptr) delete input;
+	if (analysis != nullptr) delete analysis;
+	if (featureManager != nullptr) delete featureManager;
+	if (classifier != nullptr) delete classifier;
 }
 
 void MainWindow::initComponents() {
@@ -168,15 +159,24 @@ void MainWindow::initComponents() {
 	mToolBar3dModel->addAction(mActionViewRight);
 	this->addToolBar(Qt::TopToolBarArea, mToolBar3dModel);
 
-	// Dock Label
-	initDockLabel();
+	// Classifier tool bar
+	classifierToolBar = new QToolBar(this);
 
+	QIcon iconTag;
+	iconTag.addFile(QStringLiteral(":/ico/icons/tag.png"), QSize(), QIcon::Normal, QIcon::Off);
+	actionAddLabel->setIcon(iconTag);
+
+	classifierToolBar->addAction(actionAddLabel);
+	addToolBar(Qt::TopToolBarArea, classifierToolBar);
+
+	// Dock Label
+	initDocks();
 }
 
 void MainWindow::initSignalsAndSlots() {
 	//Menu file
 	connect(ui->actionOpen,   &QAction::triggered, this, &MainWindow::open);
-	//Barra de herramientas del visor
+	// Viewer tool bar
 	connect(mActionGlobalZoom, SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setGlobalZoom()));
 	connect(mActionViewFront,  SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setFrontView()));
 	connect(mActionViewBack,   SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setBackView()));
@@ -184,6 +184,8 @@ void MainWindow::initSignalsAndSlots() {
 	connect(mActionViewBottom, SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setBottomView()));
 	connect(mActionViewLeft,   SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setLeftView()));
 	connect(mActionViewRight,  SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setRightView()));
+	// Classifier tool bar
+	connect(actionAddLabel, SIGNAL(triggered(bool)), this, SLOT(addLabel()));
 }
 
 void MainWindow::changeEvent(QEvent* e) {
@@ -208,21 +210,24 @@ void MainWindow::open() {
 	}
 }
 
-void MainWindow::initDockLabel() {
-	containerLabel = new Container(this, "Container Label");
+void MainWindow::initDocks() {
 
-	for(int i = 0; i < 10; i ++)
-		addLabel();
+	// Dock label
+	listWidgetLabel = new QListWidget(this);
+	ui->dockLabel->setWidget(listWidgetLabel);
 
-	scrollAreaLabel = new QScrollArea;
-	scrollAreaLabel->setWidget(containerLabel);
-	ui->dockLabel->setWidget(scrollAreaLabel);
+	// Dock features
+
+	// Dock effects
 }
 
 void MainWindow::addLabel() {
-	static unsigned int index = 0;
-	std::string widgetName = "label" + std::to_string(++index);
-	LabelView* labelView = new LabelView("Ground", containerLabel, widgetName.c_str());
-	containerLabel->addWidget(labelView);
-}
 
+	static unsigned int index = 0;
+	std::string labelName = "Label " + std::to_string(++index);
+	LabelView* labelView = new LabelView(labelName, listWidgetLabel,"1");
+	listWidgetLabel->setResizeMode(QListWidget::Adjust);
+	QListWidgetItem* item = new QListWidgetItem(listWidgetLabel);
+	item->setSizeHint(QSize(labelView->width(), labelView->height()));
+	listWidgetLabel->setItemWidget(item, labelView);
+}
