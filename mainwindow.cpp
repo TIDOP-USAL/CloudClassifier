@@ -24,6 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
 	mActionViewBack(new QAction(this)),
 	mActionViewBottom(new QAction(this)),
 	actionAddLabel(new QAction(this)),
+	actionAddFeature(new QAction(this)),
+	actionAddEffect(new QAction(this)),
+	actionRun(new QAction(this)),
 	input(nullptr), 
 	analysis(nullptr), 
 	featureManager(nullptr), 
@@ -161,13 +164,31 @@ void MainWindow::initComponents() {
 
 	// Classifier tool bar
 	classifierToolBar = new QToolBar(this);
+	classifierToolBar->setMovable(false);
+	classifierToolBar->setOrientation(Qt::Orientation::Vertical);
 
 	QIcon iconTag;
 	iconTag.addFile(QStringLiteral(":/ico/icons/tag.png"), QSize(), QIcon::Normal, QIcon::Off);
 	actionAddLabel->setIcon(iconTag);
 
+	QIcon iconFeature;
+	iconFeature.addFile(QStringLiteral(":/ico/icons/feature.png"), QSize(), QIcon::Normal, QIcon::Off);
+	actionAddFeature->setIcon(iconFeature);
+
+	QIcon iconEffect;
+	iconEffect.addFile(QStringLiteral(":/ico/icons/effect.png"), QSize(), QIcon::Normal, QIcon::Off);
+	actionAddEffect->setIcon(iconEffect);
+
+	QIcon iconRun;
+	iconRun.addFile(QStringLiteral(":/ico/icons/play.png"), QSize(), QIcon::Normal, QIcon::Off);
+	actionRun->setIcon(iconRun);
+
 	classifierToolBar->addAction(actionAddLabel);
-	addToolBar(Qt::TopToolBarArea, classifierToolBar);
+	classifierToolBar->addAction(actionAddFeature);
+	classifierToolBar->addAction(actionAddEffect);
+	classifierToolBar->addSeparator();
+	classifierToolBar->addAction(actionRun);
+	addToolBar(Qt::LeftToolBarArea, classifierToolBar);
 
 	// Dock Label
 	initDocks();
@@ -186,6 +207,28 @@ void MainWindow::initSignalsAndSlots() {
 	connect(mActionViewRight,  SIGNAL(triggered(bool)), mCCViewer3D, SLOT(setRightView()));
 	// Classifier tool bar
 	connect(actionAddLabel, SIGNAL(triggered(bool)), this, SLOT(addLabel()));
+	connect(actionAddFeature, SIGNAL(triggered(bool)), this, SLOT(addFeature()));
+	connect(actionAddEffect, SIGNAL(triggered(bool)), this, SLOT(addEffect()));
+}
+
+void MainWindow::initDocks() {
+	// Dock label
+	listWidgetLabels = new QListWidget(this);
+	listWidgetLabels->setResizeMode(QListWidget::Adjust);
+	ui->dockLabel->setWidget(listWidgetLabels);
+	// Dock features
+	listWidgetFeatures = new QListWidget(this);
+	listWidgetFeatures->setResizeMode(QListWidget::Adjust);
+	ui->dockFeatures->setWidget(listWidgetFeatures);
+	// Dock effects
+	listWidgetEffects = new QListWidget(this);
+	listWidgetEffects->setResizeMode(QListWidget::Adjust);
+	ui->dockEffects->setWidget(listWidgetEffects);
+}
+
+void MainWindow::updateEffectViews() {
+	for (EffectView* effectView : effectViews)
+		effectView->update();
 }
 
 void MainWindow::changeEvent(QEvent* e) {
@@ -210,24 +253,46 @@ void MainWindow::open() {
 	}
 }
 
-void MainWindow::initDocks() {
-
-	// Dock label
-	listWidgetLabel = new QListWidget(this);
-	ui->dockLabel->setWidget(listWidgetLabel);
-
-	// Dock features
-
-	// Dock effects
-}
-
 void MainWindow::addLabel() {
-
+	// Create view
 	static unsigned int index = 0;
 	std::string labelName = "Label " + std::to_string(++index);
-	LabelView* labelView = new LabelView(labelName, listWidgetLabel,"1");
-	listWidgetLabel->setResizeMode(QListWidget::Adjust);
-	QListWidgetItem* item = new QListWidgetItem(listWidgetLabel);
+	LabelView* labelView = new LabelView(labelName, listWidgetLabels, labelName.c_str());
+	labelViews.push_back(labelView);
+	// Add view
+	QListWidgetItem* item = new QListWidgetItem(listWidgetLabels);
 	item->setSizeHint(QSize(labelView->width(), labelView->height()));
-	listWidgetLabel->setItemWidget(item, labelView);
+	listWidgetLabels->setItemWidget(item, labelView);
+	// Remove function
+	labelView->setDeleteFunction([&](void) {
+		listWidgetLabels->removeItemWidget(item);
+	});
+	//Update effect views
+	updateEffectViews();
+}
+
+void MainWindow::addFeature() {
+	// Create view
+	static unsigned int index = 0;
+	std::string featureName = "Feature " + std::to_string(++index);
+	FeatureView* featureView = new FeatureView(listWidgetFeatures, featureName.c_str());
+	featureViews.push_back(featureView);
+	// Add view
+	QListWidgetItem* item = new QListWidgetItem(listWidgetFeatures);
+	item->setSizeHint(QSize(featureView->width(), featureView->height()));
+	listWidgetFeatures->setItemWidget(item, featureView);
+	//Update effect views
+	updateEffectViews();
+}
+
+void MainWindow::addEffect() {
+	// Create view
+	static unsigned int index = 0;
+	std::string effectName = "Effect " + std::to_string(++index);
+	EffectView* effectView = new EffectView(labelViews, featureViews, listWidgetEffects, effectName.c_str());
+	effectViews.push_back(effectView);
+	// Add view
+	QListWidgetItem* item = new QListWidgetItem(listWidgetEffects);
+	item->setSizeHint(QSize(effectView->width(), effectView->height()));
+	listWidgetEffects->setItemWidget(item, effectView);
 }

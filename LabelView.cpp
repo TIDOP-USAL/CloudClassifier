@@ -5,9 +5,6 @@
 LabelView::LabelView(const std::string& _text, QWidget* parent, const char* name) 
 	: text(_text) {
 
-	label = new QLabel(this);
-	label->setText("Color:");
-
 	color = QColor(0, 0, 0);
 	colorButton = new QPushButton(this);
 	colorButton->setFixedWidth(COLOR_BUTTON_SIZE);
@@ -15,16 +12,25 @@ LabelView::LabelView(const std::string& _text, QWidget* parent, const char* name
 	setColor(color);
 
 	lineEdit = new QLineEdit(this);
+	lineEdit->setFixedHeight(20);
 	lineEdit->setText(text.c_str());
+
+	deleteButton = new QPushButton(this);
+	QIcon icon;
+	icon.addFile(QStringLiteral(":/ico/icons/delete.png"), QSize(), QIcon::Normal, QIcon::Off);
+	deleteButton->setFixedSize(QSize(24, 24));
+	deleteButton->setIcon(icon);
+	std::string style = "background-color: none; border: none;";
+	deleteButton->setStyleSheet(style.c_str());
 	
 	layout = new QHBoxLayout(this);
 	layout->setMargin(10);
-	layout->addWidget(label);
 	layout->addWidget(colorButton);
 	layout->addWidget(lineEdit);
+	layout->addWidget(deleteButton);
 	
 	setFixedWidth(parent->width());
-	setFixedHeight(WIDGET_HEIGHT);
+	setFixedHeight(LABEL_VIEW_HEIGHT);
 	setLayout(layout);
 
 	connect(colorButton, &QPushButton::pressed, this, &LabelView::colorPicker);
@@ -32,14 +38,13 @@ LabelView::LabelView(const std::string& _text, QWidget* parent, const char* name
 
 LabelView::~LabelView() {
 	delete colorButton;
-	delete label;
+	delete lineEdit;
 	delete layout;
 }
 
 void LabelView::setText(const std::string& text) {
 	this->text = text;
-	label->setText(text.c_str());
-	label->update();
+	lineEdit->setText(text.c_str());
 }
 
 void LabelView::setColor(const QColor& color) {
@@ -49,6 +54,10 @@ void LabelView::setColor(const QColor& color) {
 	std::string blue = std::to_string(color.blue());
 	std::string style = "background-color: rgba(" + red + ", " + green + ", " + blue + ", 1); border: none;";
 	colorButton->setStyleSheet(style.c_str());
+}
+
+void LabelView::setDeleteFunction(const std::function<void()>& fun) {
+	connect(deleteButton, &QPushButton::pressed, this, fun);
 }
 
 void LabelView::colorPicker() {

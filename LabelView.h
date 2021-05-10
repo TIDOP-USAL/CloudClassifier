@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <functional>
 
 #include <QWidget>
 #include <QLayout>
@@ -10,16 +11,16 @@
 #include <QPushButton>
 
 #define COLOR_BUTTON_SIZE 15
-#define LINE_EDIT_WIDTH 40;
-#define WIDGET_HEIGHT 35
+#define LINE_EDIT_WIDTH 40
+#define LABEL_VIEW_HEIGHT 50
 
 class LabelView : public QWidget {
 	Q_OBJECT
 private:
 	std::string text;
-	QLabel* label;
 	QColor color;
 	QPushButton* colorButton;
+	QPushButton* deleteButton;
 	QLineEdit* lineEdit;
 	QHBoxLayout* layout;
 public:
@@ -28,6 +29,7 @@ public:
 public:
 	void setText(const std::string& text);
 	void setColor(const QColor& color);
+	void setDeleteFunction(const std::function<void()>& fun);
 public slots:
 	void colorPicker();
 

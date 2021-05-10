@@ -9,6 +9,8 @@ set(SOURCES
 	src/Input.cpp
 	src/LabelManager.cpp
 	src/LabelView.cpp
+	src/FeatureView.cpp
+	src/EffectView.cpp
 	PARENT_SCOPE)
 	
 set(HEADERS
@@ -24,4 +26,6 @@ set(HEADERS
 	src/EffectGroup.h
 	src/WeightGroup.h
 	src/LabelView.h
+	src/FeatureView.h
+	src/EffectView.h
 	PARENT_SCOPE)
