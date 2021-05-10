@@ -31,14 +31,12 @@ private:
 	QLabel* label;
 	QLineEdit* lineEdit;
 	QHBoxLayout* layout;
-	QString selectedFeatureName;
 public:
 	FeatureView(QWidget* parent, const char* name);
 	~FeatureView();
 public:
-	inline std::string& getFeatureName() {
-		std::string feature = selectedFeatureName.toLocal8Bit().constData();
-		return feature;
+	inline QString& getFeatureName() {
+		return comboBox->itemText(comboBox->currentIndex());
 	}
 
 	inline float getWeight() const {

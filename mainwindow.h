@@ -2,16 +2,16 @@
 #define MAINWINDOW_H
 
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include <QMainWindow>
 #include <QScrollArea>
 #include <QListWidget>
 
-#include "Input.h"
-#include "Analysis.h"
-#include "FeatureManager.h"
-#include "Classifier.h"
+#include "LabelView.h"
+#include "FeatureView.h"
+#include "EffectView.h"
 
 #include "LabelView.h"
 #include "FeatureView.h"
@@ -49,19 +49,18 @@ private:
 	QListWidget* listWidgetFeatures;
 	QListWidget* listWidgetEffects;
 
-	std::vector<LabelView*> labelViews;
-	std::vector<FeatureView*> featureViews;
-	std::vector<EffectView*> effectViews;
+	std::vector<std::string> comboLabelsVec;
+	std::vector<std::string> comboFeaturesVec;
+
 private:
-	Input* input;
-	Analysis* analysis;
-	FeatureManager* featureManager;
-	Classifier* classifier;
+	QString filePath;
 private:
 	void initComponents();
 	void initSignalsAndSlots();
 	void initDocks();
-	void updateEffectViews();
+	std::vector<LabelView*> getLabelViews();
+	std::vector<FeatureView*> getFeatureViews();
+	std::vector<EffectView*> getEffectViews();
 protected:
 	void changeEvent(QEvent* e);
 protected slots:
@@ -69,6 +68,7 @@ protected slots:
 	void addLabel();
 	void addFeature();
 	void addEffect();
+	void runModel();
 public:
 	explicit MainWindow(QWidget *parent = nullptr);
 	~MainWindow();

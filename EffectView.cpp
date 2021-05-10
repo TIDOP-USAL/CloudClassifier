@@ -1,12 +1,11 @@
 #include "EffectView.h"
 
-EffectView::EffectView(QWidget* parent, const char* name)
-	: indexLabels(0), indexFeatures(0) {
+EffectView::EffectView(QWidget* parent, const char* name) {
 	init(parent);
 }
 
-EffectView::EffectView(const std::vector<LabelView*>& _labelViews, const std::vector<FeatureView*>& _featureViews, QWidget* parent, const char* name)
-	: labelViews(_labelViews), featureViews(_featureViews) {
+EffectView::EffectView(const std::vector<std::string>& _comboLabels, const std::vector<std::string>& _comboFeatures, QWidget* parent, const char* name)
+	: comboLabels(_comboLabels), comboFeatures(_comboFeatures){
 	init(parent);
 }
 
@@ -63,24 +62,18 @@ void EffectView::init(QWidget* parent) {
 
 void EffectView::update() {
 
-	// Save selected items
-	indexLabels = comboBoxLabels->currentIndex();
-	indexFeatures = comboBoxFeatures->currentIndex();
+	// Get indices
+	indexLabel = comboBoxLabels->currentIndex();
+	indexFeature = comboBoxFeatures->currentIndex();
 
-	// Update combo boxes
-	comboBoxLabels->clear();
-	comboBoxFeatures->clear();
+	// Update combo
+	for (std::string& text : comboLabels)
+		comboBoxLabels->addItem(QString(text.c_str()));
 
-	if (!labelViews.empty()) {
-		for (LabelView* labelView : labelViews)
-			comboBoxLabels->addItem(QString(labelView->getText().c_str()));
-	}
-	if (!featureViews.empty()) {
-		for (FeatureView* featureView : featureViews)
-			comboBoxFeatures->addItem(QString(featureView->getFeatureName().c_str()));
-	}
+	for (std::string& name : comboFeatures)
+		comboBoxFeatures->addItem(QString(name.c_str()));
 
-	// Reselect previous item selected
-	comboBoxLabels->setCurrentIndex(indexLabels);
-	comboBoxFeatures->setCurrentIndex(indexFeatures);
+	// Set indices
+	comboBoxLabels->setCurrentIndex(indexLabel);
+	comboBoxFeatures->setCurrentIndex(indexFeature);
 }

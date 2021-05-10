@@ -11,6 +11,10 @@ set(SOURCES
 	src/LabelView.cpp
 	src/FeatureView.cpp
 	src/EffectView.cpp
+	src/LabelController.cpp
+	src/FeatureController.cpp
+	src/EffectController.cpp
+	src/ClassificationModel.cpp
 	PARENT_SCOPE)
 	
 set(HEADERS
@@ -28,4 +32,8 @@ set(HEADERS
 	src/LabelView.h
 	src/FeatureView.h
 	src/EffectView.h
+	src/LabelController.h
+	src/FeatureController.h
+	src/EffectController.h
+	src/ClassificationModel.h
 	PARENT_SCOPE)

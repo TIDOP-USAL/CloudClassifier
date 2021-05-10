@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include <QWidget>
@@ -28,21 +29,22 @@ private:
 	QComboBox* comboBoxLabels;
 	QComboBox* comboBoxFeatures;
 	QComboBox* comboBoxEffects;
-	int indexLabels, indexFeatures;
+	int indexLabel, indexFeature;
 	QString selectedLabelName, selectedFeatureName, selectedEffect;
 	QHBoxLayout* layout;
 private:
-	std::vector<LabelView*> labelViews;
-	std::vector<FeatureView*> featureViews;
+	std::vector<std::string> comboLabels;
+	std::vector<std::string> comboFeatures;
 public:
 	EffectView(QWidget* parent, const char* name);
-	EffectView(const std::vector<LabelView*>& _labelViews, const std::vector<FeatureView*>& _featureViews, QWidget* parent, const char* name);
+	EffectView(const std::vector<std::string>& _comboLabels, const std::vector<std::string>& _comboFeatures, QWidget* parent, const char* name);
 	~EffectView();
 private:
 	void init(QWidget* parent);
 public:
 	void update();
 public:
+
 	inline std::string& getSelectedLabelName() {
 		std::string label = selectedLabelName.toLocal8Bit().constData();
 		return label;

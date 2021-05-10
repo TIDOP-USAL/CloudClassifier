@@ -14,6 +14,11 @@
 #include "ui_mainwindow.h"
 #include "ccviewer3d.h"
 
+#include "LabelController.h"
+#include "FeatureController.h"
+#include "EffectController.h"
+#include "ClassificationModel.h"
+
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), 
 	mActionGlobalZoom(new QAction(this)), 
@@ -26,73 +31,13 @@ MainWindow::MainWindow(QWidget *parent)
 	actionAddLabel(new QAction(this)),
 	actionAddFeature(new QAction(this)),
 	actionAddEffect(new QAction(this)),
-	actionRun(new QAction(this)),
-	input(nullptr), 
-	analysis(nullptr), 
-	featureManager(nullptr), 
-	classifier(nullptr) {
-		
+	actionRun(new QAction(this)) {
 	
 	initComponents();
 	initSignalsAndSlots();
-
-	/*
-	// Experimental
-	std::string filePath = QFileDialog::getOpenFileName(this, tr("Open Point Cloud File"), "../Data", tr("PLY (*.ply)")).toLocal8Bit().constData();
-	Input input(filePath);
-
-	input.getLabelManager().createLabel("ground", CGAL::Color(122, 108, 99));
-	input.getLabelManager().createLabel("vegetation", CGAL::Color(0, 255, 0));
-	input.getLabelManager().createLabel("roof", CGAL::Color(255, 124, 0));
-
-	float gridResolution = 0.1f; //float gridResolution = 0.34f;
-	unsigned int numberOfNeighbors = 200;
-	Analysis analysis(input, gridResolution, numberOfNeighbors);
-
-	float radiusNeighbors = 0.1f; //float radiusNeighbors = 1.7f;
-	float radiusDtm = 5.0f; //float radiusDtm = 15.0f;
-	FeatureManager featureManager(analysis, radiusNeighbors, radiusDtm);
-
-	Classifier classifier(featureManager);
-
-	// Weights
-	FeatureHandle distanceToPlane = featureManager.getDistanceToPlane();
-	classifier.addWeight(WeightGroup(distanceToPlane, 6.75e-2f));
-
-	FeatureHandle dispersion = featureManager.getDispersion();
-	classifier.addWeight(WeightGroup(dispersion, 5.45e-1f));
-
-	FeatureHandle elevation = featureManager.getElevation();
-	classifier.addWeight(WeightGroup(elevation, 1.47e1f));
-
-	// Labels
-	LabelHandle ground = input.getLabelManager().getLabel("ground").handle;
-	classifier.addEffect(EffectGroup(ground, distanceToPlane, CGALclassifier::NEUTRAL));
-	classifier.addEffect(EffectGroup(ground, dispersion, CGALclassifier::NEUTRAL));
-	classifier.addEffect(EffectGroup(ground, elevation, CGALclassifier::PENALIZING));
-
-	LabelHandle vegetation = input.getLabelManager().getLabel("vegetation").handle;
-	classifier.addEffect(EffectGroup(vegetation, distanceToPlane, CGALclassifier::FAVORING));
-	classifier.addEffect(EffectGroup(vegetation, dispersion, CGALclassifier::FAVORING));
-	classifier.addEffect(EffectGroup(vegetation, elevation, CGALclassifier::PENALIZING));
-
-	LabelHandle roof = input.getLabelManager().getLabel("roof").handle;
-	classifier.addEffect(EffectGroup(roof, distanceToPlane, CGALclassifier::NEUTRAL));
-	classifier.addEffect(EffectGroup(roof, dispersion, CGALclassifier::NEUTRAL));
-	classifier.addEffect(EffectGroup(roof, elevation, CGALclassifier::FAVORING));
-
-	// Classify
-	classifier.classify(ClassificationType::RAW);
-	classifier.save();
-	*/
 }
 
-MainWindow::~MainWindow() {
-	if (input != nullptr) delete input;
-	if (analysis != nullptr) delete analysis;
-	if (featureManager != nullptr) delete featureManager;
-	if (classifier != nullptr) delete classifier;
-}
+MainWindow::~MainWindow() { }
 
 void MainWindow::initComponents() {
 
@@ -226,9 +171,34 @@ void MainWindow::initDocks() {
 	ui->dockEffects->setWidget(listWidgetEffects);
 }
 
-void MainWindow::updateEffectViews() {
-	for (EffectView* effectView : effectViews)
-		effectView->update();
+std::vector<LabelView*> MainWindow::getLabelViews() {
+	std::vector<LabelView*> labelViews;
+	for (int i = 0; i < listWidgetLabels->count(); i++) {
+		QListWidgetItem* item = listWidgetLabels->item(i);
+		LabelView* labelView = dynamic_cast<LabelView*>(listWidgetLabels->itemWidget(item));
+		labelViews.push_back(labelView);
+	}
+	return labelViews;
+}
+
+std::vector<FeatureView*> MainWindow::getFeatureViews() {
+	std::vector<FeatureView*> featureViews;
+	for (int i = 0; i < listWidgetFeatures->count(); i++) {
+		QListWidgetItem* item = listWidgetFeatures->item(i);
+		FeatureView* featureView = dynamic_cast<FeatureView*>(listWidgetFeatures->itemWidget(item));
+		featureViews.push_back(featureView);
+	}
+	return featureViews;
+}
+
+std::vector<EffectView*> MainWindow::getEffectViews() {
+	std::vector<EffectView*> effectViews;
+	for (int i = 0; i < listWidgetEffects->count(); i++) {
+		QListWidgetItem* item = listWidgetEffects->item(i);
+		EffectView* effectView = dynamic_cast<EffectView*>(listWidgetEffects->itemWidget(item));
+		effectViews.push_back(effectView);
+	}
+	return effectViews;
 }
 
 void MainWindow::changeEvent(QEvent* e) {
@@ -244,12 +214,11 @@ void MainWindow::changeEvent(QEvent* e) {
 
 void MainWindow::open() {
 	ui->statusBar->showMessage(tr("Open Cloud Point File"));
-	QString file = QFileDialog::getOpenFileName(this, tr("Open Point Cloud File"), "../Data", tr("PLY (*.ply)"));
-	if (!file.isEmpty()) {
+	filePath = QFileDialog::getOpenFileName(this, tr("Open Point Cloud File"), "../Data", tr("PLY (*.ply)"));
+	if (!filePath.isEmpty()) {
 		mCCViewer3D->clear();
-		mCCViewer3D->loadFromFile(file);
+		mCCViewer3D->loadFromFile(filePath);
 		mCCViewer3D->setGlobalZoom();
-		input = new Input(file.toLocal8Bit().constData());
 	}
 }
 
@@ -258,7 +227,6 @@ void MainWindow::addLabel() {
 	static unsigned int index = 0;
 	std::string labelName = "Label " + std::to_string(++index);
 	LabelView* labelView = new LabelView(labelName, listWidgetLabels, labelName.c_str());
-	labelViews.push_back(labelView);
 	// Add view
 	QListWidgetItem* item = new QListWidgetItem(listWidgetLabels);
 	item->setSizeHint(QSize(labelView->width(), labelView->height()));
@@ -267,8 +235,6 @@ void MainWindow::addLabel() {
 	labelView->setDeleteFunction([&](void) {
 		listWidgetLabels->removeItemWidget(item);
 	});
-	//Update effect views
-	updateEffectViews();
 }
 
 void MainWindow::addFeature() {
@@ -276,23 +242,48 @@ void MainWindow::addFeature() {
 	static unsigned int index = 0;
 	std::string featureName = "Feature " + std::to_string(++index);
 	FeatureView* featureView = new FeatureView(listWidgetFeatures, featureName.c_str());
-	featureViews.push_back(featureView);
 	// Add view
 	QListWidgetItem* item = new QListWidgetItem(listWidgetFeatures);
 	item->setSizeHint(QSize(featureView->width(), featureView->height()));
 	listWidgetFeatures->setItemWidget(item, featureView);
-	//Update effect views
-	updateEffectViews();
 }
 
 void MainWindow::addEffect() {
+
+	// Get labels text
+	comboLabelsVec.clear();
+	for (int i = 0; i < listWidgetLabels->count(); i++) {
+		QListWidgetItem* item = listWidgetLabels->item(i);
+		LabelView* labelView = dynamic_cast<LabelView*>(listWidgetLabels->itemWidget(item));
+		QString text = labelView->getText();
+		comboLabelsVec.push_back(text.toLocal8Bit().constData());
+	}
+
+	// Get features text
+	comboFeaturesVec.clear();
+	for (int i = 0; i < listWidgetFeatures->count(); i++) {
+		QListWidgetItem* item = listWidgetFeatures->item(i);
+		FeatureView* featureView = dynamic_cast<FeatureView*>(listWidgetFeatures->itemWidget(item));
+		QString name = featureView->getFeatureName();
+		comboFeaturesVec.push_back(name.toLocal8Bit().constData());
+	}
+
 	// Create view
 	static unsigned int index = 0;
 	std::string effectName = "Effect " + std::to_string(++index);
-	EffectView* effectView = new EffectView(labelViews, featureViews, listWidgetEffects, effectName.c_str());
-	effectViews.push_back(effectView);
+	EffectView* effectView = new EffectView(comboLabelsVec, comboFeaturesVec, listWidgetEffects, effectName.c_str());
 	// Add view
 	QListWidgetItem* item = new QListWidgetItem(listWidgetEffects);
 	item->setSizeHint(QSize(effectView->width(), effectView->height()));
 	listWidgetEffects->setItemWidget(item, effectView);
+}
+
+void MainWindow::runModel() {
+	// Controllers
+	LabelController labelController(getLabelViews());
+	FeatureController featureController(getFeatureViews());
+	EffectController effectController(getEffectViews());
+	// Model
+	ClassificationModel classificationModel(filePath.toLocal8Bit().constData(), labelController, featureController, effectController);
+	classificationModel.run();
 }

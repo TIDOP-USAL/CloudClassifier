@@ -10,7 +10,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 
-#define COLOR_BUTTON_SIZE 15
+#define COLOR_BUTTON_SIZE 20
 #define LINE_EDIT_WIDTH 40
 #define LABEL_VIEW_HEIGHT 50
 
@@ -34,9 +34,8 @@ public slots:
 	void colorPicker();
 
 public:
-	inline std::string& getText() {
-		std::string lineText = lineEdit->text().toLocal8Bit().constData();
-		return lineText;
+	inline QString& getText() {
+		return lineEdit->text();
 	}
 
 	inline QColor& getColor() {
