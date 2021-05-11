@@ -34,7 +34,7 @@ private:
 	float radiusNeighbors, radiusDtm;
 	Analysis analysis;
 public:
-	FeatureManager(const Analysis& _analysis, float _radiusNeighbors, float _radiusDtm);	// Rename when knowing what radiusDtm is...
+	FeatureManager(const Analysis& _analysis, float _radiusNeighbors, float _radiusDtm);
 	FeatureManager(const FeatureManager& featureManager) = delete;
 	FeatureManager& operator=(const FeatureManager& featureManager) = delete;
 	FeatureManager(FeatureManager&& featureManager) noexcept;

@@ -26,11 +26,14 @@ private:
 	QLabel* qLabelLabels;
 	QLabel* qLabelFeatures;
 	QLabel* qLabelEffects;
+
 	QComboBox* comboBoxLabels;
 	QComboBox* comboBoxFeatures;
 	QComboBox* comboBoxEffects;
+
 	int indexLabel, indexFeature;
 	QString selectedLabelName, selectedFeatureName, selectedEffect;
+
 	QHBoxLayout* layout;
 private:
 	std::vector<std::string> comboLabels;
@@ -45,18 +48,15 @@ public:
 	void update();
 public:
 
-	inline std::string& getSelectedLabelName() {
-		std::string label = selectedLabelName.toLocal8Bit().constData();
-		return label;
+	inline QString& getSelectedLabelName() {
+		return comboBoxLabels->itemText(comboBoxLabels->currentIndex());
 	}
 
-	inline std::string& getSelectedFeatureName() {
-		std::string feature = selectedFeatureName.toLocal8Bit().constData();
-		return feature;
+	inline QString& getSelectedFeatureName() {
+		return comboBoxFeatures->itemText(comboBoxFeatures->currentIndex());
 	}
 
-	inline std::string& getSelectedEffect() {
-		std::string effect = selectedEffect.toLocal8Bit().constData();
-		return effect;
+	inline QString& getSelectedEffect() {
+		return comboBoxEffects->itemText(comboBoxEffects->currentIndex());
 	}
 };

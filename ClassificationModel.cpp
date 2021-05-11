@@ -63,14 +63,14 @@ void ClassificationModel::applyWeights() {
 void ClassificationModel::applyEffects() {
 	for (EffectView* effectView : effectController.getViews()) {
 		// Get handles
-		LabelHandle labelHandle = input->getLabelManager().getLabel(effectView->getSelectedLabelName()).handle;
-		FeatureHandle featureHandle = featureManager->getFeatureHandle(effectView->getSelectedFeatureName());
+		LabelHandle labelHandle = input->getLabelManager().getLabel(effectView->getSelectedLabelName().toLocal8Bit().constData()).handle;
+		FeatureHandle featureHandle = featureManager->getFeatureHandle(effectView->getSelectedFeatureName().toLocal8Bit().constData());
 		// Apply effects
-		if(effectView->getSelectedEffect() == std::string(EFFECT_NEUTRAL))
+		if(effectView->getSelectedEffect().toLocal8Bit().constData() == std::string(EFFECT_NEUTRAL))
 			classifier->addEffect(EffectGroup(std::move(labelHandle), std::move(featureHandle), CGALclassifier::NEUTRAL));
-		else if (effectView->getSelectedEffect() == std::string(EFFECT_PENALIZING))
+		else if (effectView->getSelectedEffect().toLocal8Bit().constData() == std::string(EFFECT_PENALIZING))
 			classifier->addEffect(EffectGroup(std::move(labelHandle), std::move(featureHandle), CGALclassifier::PENALIZING));
-		else if (effectView->getSelectedEffect() == std::string(EFFECT_FAVORING))
+		else if (effectView->getSelectedEffect().toLocal8Bit().constData() == std::string(EFFECT_FAVORING))
 			classifier->addEffect(EffectGroup(std::move(labelHandle), std::move(featureHandle), CGALclassifier::FAVORING));
 	}
 }
