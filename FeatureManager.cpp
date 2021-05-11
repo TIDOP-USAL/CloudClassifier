@@ -35,3 +35,30 @@ FeatureManager::FeatureManager(FeatureManager&& featureManager) noexcept
 	verticality = featureManager.verticality;
 	featureSet.end_parallel_additions();
 }
+
+FeatureHandle& FeatureManager::getFeatureHandle(const std::string& featureName) {
+	FeatureHandle featureHandle;
+	if (featureName == std::string(DISTANCE_TO_PLANE))
+		featureHandle = distanceToPlane;
+	else if (featureName == std::string(DISPERSION))
+		featureHandle = dispersion;
+	else if (featureName == std::string(ELEVATION))
+		featureHandle = elevation;
+	else if (featureName == std::string(EIGEN_VALUE_0))
+		featureHandle = eigenValue0;
+	else if (featureName == std::string(EIGEN_VALUE_1))
+		featureHandle = eigenValue1;
+	else if (featureName == std::string(EIGEN_VALUE_2))
+		featureHandle = eigenValue2;
+	else if (featureName == std::string(HEIGHT_ABOVE))
+		featureHandle = heightAbove;
+	else if (featureName == std::string(HEIGHT_BELOW))
+		featureHandle = heightBelow;
+	else if (featureName == std::string(VERTICAL_DISPERSION))
+		featureHandle = verticalDispersion;
+	else if (featureName == std::string(VERTICAL_RANGE))
+		featureHandle = verticalRange;
+	else if (featureName == std::string(VERTICALITY))
+		featureHandle = verticality;
+	return featureHandle;
+}

@@ -30,11 +30,9 @@ void EffectView::init(QWidget* parent) {
 	comboBoxEffects->addItem(QString(EFFECT_PENALIZING));
 	comboBoxEffects->addItem(QString(EFFECT_FAVORING));
 
-	/*
-	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBox->itemText(comboBox->currentIndex()); });
-	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBox->itemText(comboBox->currentIndex()); });
-	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBox->itemText(comboBox->currentIndex()); });
-	*/
+	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBoxLabels->itemText(comboBoxLabels->currentIndex()); });
+	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBoxLabels->itemText(comboBoxLabels->currentIndex()); });
+	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBoxLabels->itemText(comboBoxLabels->currentIndex()); });
 
 	// QLabels
 	qLabelLabels = new QLabel(this);

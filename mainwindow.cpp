@@ -154,6 +154,7 @@ void MainWindow::initSignalsAndSlots() {
 	connect(actionAddLabel, SIGNAL(triggered(bool)), this, SLOT(addLabel()));
 	connect(actionAddFeature, SIGNAL(triggered(bool)), this, SLOT(addFeature()));
 	connect(actionAddEffect, SIGNAL(triggered(bool)), this, SLOT(addEffect()));
+	connect(actionRun, SIGNAL(triggered(bool)), this, SLOT(runModel()));
 }
 
 void MainWindow::initDocks() {
@@ -284,6 +285,7 @@ void MainWindow::runModel() {
 	FeatureController featureController(getFeatureViews());
 	EffectController effectController(getEffectViews());
 	// Model
-	ClassificationModel classificationModel(filePath.toLocal8Bit().constData(), labelController, featureController, effectController);
+	std::string path = filePath.toLocal8Bit().constData();
+	ClassificationModel classificationModel(path, labelController, featureController, effectController);
 	classificationModel.run();
 }

@@ -2,6 +2,18 @@
 
 #include "Analysis.h"
 
+#define DISTANCE_TO_PLANE "Distance to plane"
+#define DISPERSION "Dispersion"
+#define ELEVATION "Elevation"
+#define EIGEN_VALUE_0 "Eigen value 0"
+#define EIGEN_VALUE_1 "Eigen value 1"
+#define EIGEN_VALUE_2 "Eigen value 2"
+#define HEIGHT_ABOVE "Height above"
+#define HEIGHT_BELOW "Height below"
+#define VERTICAL_DISPERSION "Vertical dispersion"
+#define VERTICAL_RANGE "Vertical range"
+#define VERTICALITY "Verticality"
+
 typedef CGAL::Classification::Feature_handle FeatureHandle;
 typedef CGAL::Classification::Feature_set FeatureSet;
 typedef CGAL::Classification::Feature::Distance_to_plane<std::vector<Point>, Pmap> DistanceToPlane;
@@ -28,7 +40,8 @@ public:
 	FeatureManager(FeatureManager&& featureManager) noexcept;
 	FeatureManager() = default;
 	~FeatureManager() = default;
-	
+public:
+	FeatureHandle& getFeatureHandle(const std::string& featureName);
 public:
 	inline FeatureSet& getFeatureSet() {
 		return featureSet;
@@ -44,6 +57,38 @@ public:
 
 	inline FeatureHandle& getElevation() {
 		return elevation;
+	}
+
+	inline FeatureHandle& getEigenValue0() {
+		return eigenValue0;
+	}
+
+	inline FeatureHandle& getEigenValue1() {
+		return eigenValue1;
+	}
+
+	inline FeatureHandle& getEigenValue2() {
+		return eigenValue2;
+	}
+
+	inline FeatureHandle& getHeightAbove() {
+		return heightAbove;
+	}
+
+	inline FeatureHandle& getHeightBelow() {
+		return heightBelow;
+	}
+
+	inline FeatureHandle& getVerticalDispersion() {
+		return verticalDispersion;
+	}
+
+	inline FeatureHandle& getVerticalRange() {
+		return verticalRange;
+	}
+
+	inline FeatureHandle& getVerticality() {
+		return verticality;
 	}
 
 	inline Analysis& getAnalysis() {

@@ -24,11 +24,20 @@ private:
 	Analysis* analysis;
 	FeatureManager* featureManager;
 	Classifier* classifier;
+
+	std::map<FeatureHandle, float> weightMap;
 public:
 	ClassificationModel(const std::string& _filePath, const LabelController& _labelController, 
 		const FeatureController& _featureController, const EffectController& _effectController);
 	ClassificationModel() = default;
 	~ClassificationModel();
+private:
+	void initInput(const std::string& filePath);
+	inline void initAnalysis(float gridResolution, unsigned int numberOfNeighbors);
+	void initFeatureManager(float radiusNeighbors, float radiusDtm);
+	inline void initClassifier();
+	void applyWeights();
+	void applyEffects();
 public:
 	void run();
 public:
