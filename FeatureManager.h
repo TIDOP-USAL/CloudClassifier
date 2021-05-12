@@ -36,12 +36,14 @@ private:
 public:
 	FeatureManager(const Analysis& _analysis, float _radiusNeighbors, float _radiusDtm);
 	FeatureManager(const FeatureManager& featureManager) = delete;
-	FeatureManager& operator=(const FeatureManager& featureManager) = delete;
 	FeatureManager(FeatureManager&& featureManager) noexcept;
 	FeatureManager() = default;
 	~FeatureManager() = default;
+	FeatureManager& operator=(const FeatureManager& featureManager) = delete;
 public:
 	FeatureHandle& getFeatureHandle(const std::string& featureName);
+	FeatureHandle* getPtr(const FeatureHandle& featureHandle);
+	FeatureHandle* getPtr(const std::string& featureName);
 public:
 	inline FeatureSet& getFeatureSet() {
 		return featureSet;

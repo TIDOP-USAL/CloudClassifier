@@ -2,7 +2,6 @@
 
 FeatureManager::FeatureManager(const Analysis& _analysis, float _radiusNeighbors, float _radiusDtm) 
 	: analysis(_analysis), radiusNeighbors(_radiusNeighbors), radiusDtm(_radiusDtm) {
-
 	featureSet.begin_parallel_additions();
 	distanceToPlane = featureSet.add<DistanceToPlane>(analysis.getInput().getPoints(), Pmap(), analysis.getLocalEigenAnalysis());
 	dispersion = featureSet.add<Dispersion>(analysis.getInput().getPoints(), Pmap(), analysis.getPlanimetricGrid(), radiusNeighbors);
@@ -38,27 +37,48 @@ FeatureManager::FeatureManager(FeatureManager&& featureManager) noexcept
 
 FeatureHandle& FeatureManager::getFeatureHandle(const std::string& featureName) {
 	FeatureHandle featureHandle;
-	if (featureName == std::string(DISTANCE_TO_PLANE))
-		featureHandle = distanceToPlane;
-	else if (featureName == std::string(DISPERSION))
-		featureHandle = dispersion;
-	else if (featureName == std::string(ELEVATION))
-		featureHandle = elevation;
-	else if (featureName == std::string(EIGEN_VALUE_0))
-		featureHandle = eigenValue0;
-	else if (featureName == std::string(EIGEN_VALUE_1))
-		featureHandle = eigenValue1;
-	else if (featureName == std::string(EIGEN_VALUE_2))
-		featureHandle = eigenValue2;
-	else if (featureName == std::string(HEIGHT_ABOVE))
-		featureHandle = heightAbove;
-	else if (featureName == std::string(HEIGHT_BELOW))
-		featureHandle = heightBelow;
-	else if (featureName == std::string(VERTICAL_DISPERSION))
-		featureHandle = verticalDispersion;
-	else if (featureName == std::string(VERTICAL_RANGE))
-		featureHandle = verticalRange;
-	else if (featureName == std::string(VERTICALITY))
-		featureHandle = verticality;
+	if (featureName == std::string(DISTANCE_TO_PLANE))			return distanceToPlane;
+	else if (featureName == std::string(DISPERSION))			return dispersion;
+	else if (featureName == std::string(ELEVATION))				return elevation;
+	else if (featureName == std::string(EIGEN_VALUE_0))			return eigenValue0;
+	else if (featureName == std::string(EIGEN_VALUE_1))			return eigenValue1;
+	else if (featureName == std::string(EIGEN_VALUE_2))			return eigenValue2;
+	else if (featureName == std::string(HEIGHT_ABOVE))			return heightAbove;
+	else if (featureName == std::string(HEIGHT_BELOW))			return heightBelow;
+	else if (featureName == std::string(VERTICAL_DISPERSION))	return verticalDispersion;
+	else if (featureName == std::string(VERTICAL_RANGE))		return verticalRange;
+	else if (featureName == std::string(VERTICALITY))			return verticality;
 	return featureHandle;
+}
+
+FeatureHandle* FeatureManager::getPtr(const FeatureHandle& featureHandle) {
+	FeatureHandle* ptr = nullptr;
+	if (featureHandle == distanceToPlane)						ptr = &distanceToPlane;
+	else if (featureHandle == dispersion)						ptr = &dispersion;
+	else if (featureHandle == elevation)						ptr = &elevation;
+	else if (featureHandle == eigenValue0)						ptr = &eigenValue0;
+	else if (featureHandle == eigenValue1)						ptr = &eigenValue1;
+	else if (featureHandle == eigenValue2)						ptr = &eigenValue2;
+	else if (featureHandle == heightAbove)						ptr = &heightAbove;
+	else if (featureHandle == heightBelow)						ptr = &heightBelow;
+	else if (featureHandle == verticalDispersion)				ptr = &verticalDispersion;
+	else if (featureHandle == verticalRange)					ptr = &verticalRange;
+	else if (featureHandle == verticality)						ptr = &verticality;
+	return ptr;
+}
+
+FeatureHandle* FeatureManager::getPtr(const std::string& featureName) {
+	FeatureHandle* ptr = nullptr;
+	if (featureName == std::string(DISTANCE_TO_PLANE))			ptr = &distanceToPlane;
+	else if (featureName == std::string(DISPERSION))			ptr = &dispersion;
+	else if (featureName == std::string(ELEVATION))				ptr = &elevation;
+	else if (featureName == std::string(EIGEN_VALUE_0))			ptr = &eigenValue0;
+	else if (featureName == std::string(EIGEN_VALUE_1))			ptr = &eigenValue1;
+	else if (featureName == std::string(EIGEN_VALUE_2))			ptr = &eigenValue2;
+	else if (featureName == std::string(HEIGHT_ABOVE))			ptr = &heightAbove;
+	else if (featureName == std::string(HEIGHT_BELOW))			ptr = &heightBelow;
+	else if (featureName == std::string(VERTICAL_DISPERSION))	ptr = &verticalDispersion;
+	else if (featureName == std::string(VERTICAL_RANGE))		ptr = &verticalRange;
+	else if (featureName == std::string(VERTICALITY))			ptr = &verticality;
+	return ptr;
 }

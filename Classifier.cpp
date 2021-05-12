@@ -16,7 +16,7 @@ void Classifier::classify(const ClassificationType& classificationType) {
 
 	for (EffectGroup& e : effects)
 		classifier.set_effect(e.label, e.feature, e.effect);
-
+		
 	switch (classificationType) {
 	case ClassificationType::RAW:
 		CGAL::Classification::classify<CGAL::Parallel_if_available_tag>(getInput().getPoints(), getLabelManager().getLabelSet(), classifier, labelIndices);
