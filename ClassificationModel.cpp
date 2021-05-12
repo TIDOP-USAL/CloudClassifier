@@ -33,19 +33,7 @@ void ClassificationModel::initFeatureManager(float radiusNeighbors, float radius
 		// Get handle
 		QString qFeatureName = featureView->getFeatureName();
 		std::string featureName = qFeatureName.toLocal8Bit().constData();
-		FeatureHandle handle;
-		// Init handle
-		if (featureName == std::string(DISTANCE_TO_PLANE))			handle = featureManager->getDistanceToPlane();
-		else if (featureName == std::string(DISPERSION))			handle = featureManager->getDispersion();
-		else if (featureName == std::string(ELEVATION))				handle = featureManager->getElevation();
-		else if (featureName == std::string(EIGEN_VALUE_0))			handle = featureManager->getEigenValue0();
-		else if (featureName == std::string(EIGEN_VALUE_1))			handle = featureManager->getEigenValue1();
-		else if (featureName == std::string(EIGEN_VALUE_2))			handle = featureManager->getEigenValue2();
-		else if (featureName == std::string(HEIGHT_ABOVE))			handle = featureManager->getHeightAbove();
-		else if (featureName == std::string(HEIGHT_BELOW))			handle = featureManager->getHeightBelow();
-		else if (featureName == std::string(VERTICAL_DISPERSION))	handle = featureManager->getVerticalDispersion();
-		else if (featureName == std::string(VERTICAL_RANGE))		handle = featureManager->getVerticalRange();
-		else if (featureName == std::string(VERTICALITY))			handle = featureManager->getVerticality();
+		FeatureHandle handle = featureManager->getFeatureHandle(featureName);
 		// Join handle and weight
 		weightMap.insert(std::pair<FeatureHandle, float>(std::move(handle), featureView->getWeight()));
 	}
