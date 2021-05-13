@@ -63,22 +63,16 @@ void ClassificationModel::applyEffects() {
 	}
 }
 
-void ClassificationModel::run() {
+void ClassificationModel::run(float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, const ClassificationType& classificationType) {
 
 	initInput(filePath);
-
-	float gridResolution = 0.1f;
-	unsigned int numberOfNeighbors = 200;
 	initAnalysis(gridResolution, numberOfNeighbors);
-
-	float radiusNeighbors = 0.1f;
-	float radiusDtm = 5.0f;
 	initFeatureManager(radiusNeighbors, radiusDtm);
-
 	initClassifier();
+
 	applyWeights();
 	applyEffects();
 
-	classifier->classify(ClassificationType::RAW);
+	classifier->classify(classificationType);
 	classifier->save();
 }

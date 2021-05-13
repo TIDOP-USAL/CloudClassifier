@@ -15,6 +15,7 @@ set(SOURCES
 	src/FeatureController.cpp
 	src/EffectController.cpp
 	src/ClassificationModel.cpp
+	src/RunPopup.cpp
 	PARENT_SCOPE)
 	
 set(HEADERS
@@ -36,4 +37,5 @@ set(HEADERS
 	src/FeatureController.h
 	src/EffectController.h
 	src/ClassificationModel.h
+	src/RunPopup.h
 	PARENT_SCOPE)

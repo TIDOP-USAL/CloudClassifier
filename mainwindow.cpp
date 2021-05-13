@@ -1,3 +1,5 @@
+#include <thread>
+
 #include <QComboBox>
 #include <QDialog>
 #include <QDockWidget>
@@ -18,6 +20,8 @@
 #include "FeatureController.h"
 #include "EffectController.h"
 #include "ClassificationModel.h"
+
+#include "RunPopup.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), 
@@ -289,6 +293,27 @@ void MainWindow::addEffects() {
 }
 
 void MainWindow::runModel() {
+
+	// Classification variables
+	float gridResolution = 0.1f;
+	unsigned int numberOfNeighbors = 200;
+	float radiusNeighbors = 0.1f;
+	float radiusDtm = 5.0f;
+	ClassificationType classificationType = ClassificationType::NONE;
+	// Run popup
+	RunPopup* runPopup = new RunPopup(this, gridResolution, numberOfNeighbors, radiusNeighbors, radiusDtm);
+	if (runPopup->exec() != QDialog::Accepted)
+		return;
+	// Get new variables
+	gridResolution = runPopup->getGridResolution();
+	numberOfNeighbors = runPopup->getNumberOfNeighbors();
+	radiusNeighbors = runPopup->getRadiusNeighbors();
+	radiusDtm = runPopup->getRadiusDtm();
+	QString classificationStr = runPopup->getClassificationType();
+	if (classificationStr == QString(CLASSIFICATION_RAW))						classificationType = ClassificationType::RAW;
+	else if (classificationStr == QString(CLASSIFICATION_LOCAL_SMOOTHING))		classificationType = ClassificationType::LOCAL_SMOOTHING;
+	else if (classificationStr == QString(CLASSIFICATION_GRAPHCUT))				classificationType = ClassificationType::GRAPHCUT;
+	else																		classificationType = ClassificationType::NONE;
 	// Controllers
 	LabelController labelController(getLabelViews());
 	FeatureController featureController(getFeatureViews());
@@ -296,5 +321,5 @@ void MainWindow::runModel() {
 	// Model
 	std::string path = filePath.toLocal8Bit().constData();
 	ClassificationModel classificationModel(path, labelController, featureController, effectController);
-	classificationModel.run();
+	classificationModel.run(gridResolution, numberOfNeighbors, radiusNeighbors, radiusDtm, classificationType);
 }

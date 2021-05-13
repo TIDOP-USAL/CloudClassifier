@@ -39,7 +39,7 @@ private:
 	void applyWeights();
 	void applyEffects();
 public:
-	void run();
+	void run(float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, const ClassificationType& classificationType);
 public:
 	inline Input* getInput() {
 		return input;

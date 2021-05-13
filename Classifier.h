@@ -7,7 +7,7 @@
 typedef CGAL::Classification::Sum_of_weighted_features_classifier CGALclassifier;
 
 enum class ClassificationType {
-	RAW, LOCAL_SMOOTHING, GRAPHCUT
+	NONE, RAW, LOCAL_SMOOTHING, GRAPHCUT
 };
 
 class Classifier {
