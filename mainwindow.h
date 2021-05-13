@@ -67,7 +67,7 @@ protected slots:
 	void open();
 	void addLabel();
 	void addFeature();
-	void addEffect();
+	void addEffects();
 	void runModel();
 public:
 	explicit MainWindow(QWidget *parent = nullptr);

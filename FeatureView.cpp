@@ -27,7 +27,7 @@ FeatureView::FeatureView(QWidget* parent, const char* name) {
 	layout->addWidget(label);
 	layout->addWidget(lineEdit);
 
-	setFixedWidth(parent->width());
+	setFixedWidth(parent->width() - 25);
 	setFixedHeight(FEATURE_VIEW_HEIGHT);
 
 	connect(comboBox, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBox->itemText(comboBox->currentIndex()); });

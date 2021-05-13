@@ -65,30 +65,20 @@ void ClassificationModel::applyEffects() {
 
 void ClassificationModel::run() {
 
-	// Progress Dialog
-	QProgressDialog progressDialog("Classifying", "Cancel", 0, 1);
-	progressDialog.setValue(0);
-	progressDialog.setWindowModality(Qt::WindowModal);
-	// Input
 	initInput(filePath);
-	// Analysis
-	float gridResolution = 0.1f; //float gridResolution = 0.34f;
+
+	float gridResolution = 0.1f;
 	unsigned int numberOfNeighbors = 200;
 	initAnalysis(gridResolution, numberOfNeighbors);
-	// Features
-	float radiusNeighbors = 0.1f; //float radiusNeighbors = 1.7f;
-	float radiusDtm = 5.0f; //float radiusDtm = 15.0f;
-	initFeatureManager(radiusNeighbors, radiusDtm);
-	// Classifier
-	initClassifier();
-	// Weights
-	applyWeights();
-	// Effects
-	applyEffects();
-	// Classification
-	classifier->classify(ClassificationType::RAW);
-	// Saving
-	classifier->save();
 
-	progressDialog.setValue(1);
+	float radiusNeighbors = 0.1f;
+	float radiusDtm = 5.0f;
+	initFeatureManager(radiusNeighbors, radiusDtm);
+
+	initClassifier();
+	applyWeights();
+	applyEffects();
+
+	classifier->classify(ClassificationType::RAW);
+	classifier->save();
 }

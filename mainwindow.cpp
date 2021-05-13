@@ -153,7 +153,7 @@ void MainWindow::initSignalsAndSlots() {
 	// Classifier tool bar
 	connect(actionAddLabel, SIGNAL(triggered(bool)), this, SLOT(addLabel()));
 	connect(actionAddFeature, SIGNAL(triggered(bool)), this, SLOT(addFeature()));
-	connect(actionAddEffect, SIGNAL(triggered(bool)), this, SLOT(addEffect()));
+	connect(actionAddEffect, SIGNAL(triggered(bool)), this, SLOT(addEffects()));
 	connect(actionRun, SIGNAL(triggered(bool)), this, SLOT(runModel()));
 }
 
@@ -170,6 +170,7 @@ void MainWindow::initDocks() {
 	listWidgetEffects = new QListWidget(this);
 	listWidgetEffects->setResizeMode(QListWidget::Adjust);
 	ui->dockEffects->setWidget(listWidgetEffects);
+
 }
 
 std::vector<LabelView*> MainWindow::getLabelViews() {
@@ -249,9 +250,8 @@ void MainWindow::addFeature() {
 	listWidgetFeatures->setItemWidget(item, featureView);
 }
 
-void MainWindow::addEffect() {
-
-	// Get labels text
+void MainWindow::addEffects() {
+	// Get label names
 	comboLabelsVec.clear();
 	for (int i = 0; i < listWidgetLabels->count(); i++) {
 		QListWidgetItem* item = listWidgetLabels->item(i);
@@ -259,8 +259,7 @@ void MainWindow::addEffect() {
 		QString text = labelView->getText();
 		comboLabelsVec.push_back(text.toLocal8Bit().constData());
 	}
-
-	// Get features text
+	// Get feature names
 	comboFeaturesVec.clear();
 	for (int i = 0; i < listWidgetFeatures->count(); i++) {
 		QListWidgetItem* item = listWidgetFeatures->item(i);
@@ -268,15 +267,25 @@ void MainWindow::addEffect() {
 		QString name = featureView->getFeatureName();
 		comboFeaturesVec.push_back(name.toLocal8Bit().constData());
 	}
-
-	// Create view
-	static unsigned int index = 0;
-	std::string effectName = "Effect " + std::to_string(++index);
-	EffectView* effectView = new EffectView(comboLabelsVec, comboFeaturesVec, listWidgetEffects, effectName.c_str());
-	// Add view
-	QListWidgetItem* item = new QListWidgetItem(listWidgetEffects);
-	item->setSizeHint(QSize(effectView->width(), effectView->height()));
-	listWidgetEffects->setItemWidget(item, effectView);
+	// Create effects
+	listWidgetEffects->clear();
+	for (std::string& labelName : comboLabelsVec) {
+		static int colorIndex = 0;
+		for (std::string& featureName : comboFeaturesVec) {
+			static unsigned int index = 0;
+			std::string effectName = "Effect " + std::to_string(++index);
+			EffectView* effectView = new EffectView(comboLabelsVec, comboFeaturesVec, listWidgetEffects, effectName.c_str());
+			effectView->getComboBoxLabels()->setCurrentText(QString(labelName.c_str()));
+			effectView->getComboBoxFeatures()->setCurrentText(QString(featureName.c_str()));
+			// Add view
+			QListWidgetItem* item = new QListWidgetItem(listWidgetEffects);
+			item->setSizeHint(QSize(effectView->width(), effectView->height()));
+			int color = 1 / 3 * 255 + (colorIndex % 2) * 255 * 2 / 3;
+			item->setBackgroundColor(QColor(color, 120, 255, 25));
+			listWidgetEffects->setItemWidget(item, effectView);
+		}
+		colorIndex++;
+	}
 }
 
 void MainWindow::runModel() {

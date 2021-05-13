@@ -29,7 +29,7 @@ LabelView::LabelView(const std::string& _text, QWidget* parent, const char* name
 	layout->addWidget(lineEdit);
 	layout->addWidget(deleteButton);
 	
-	setFixedWidth(parent->width());
+	setFixedWidth(parent->width() - 25);
 	setFixedHeight(LABEL_VIEW_HEIGHT);
 	setLayout(layout);
 

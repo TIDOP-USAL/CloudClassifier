@@ -10,7 +10,6 @@ EffectView::EffectView(const std::vector<std::string>& _comboLabels, const std::
 }
 
 EffectView::~EffectView() {
-	delete qLabelLabels;
 	delete qLabelFeatures;
 	delete qLabelEffects;
 	delete comboBoxLabels;
@@ -35,18 +34,14 @@ void EffectView::init(QWidget* parent) {
 	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBoxLabels->itemText(comboBoxLabels->currentIndex()); });
 
 	// QLabels
-	qLabelLabels = new QLabel(this);
-	qLabelLabels->setText("Label");
-
 	qLabelFeatures = new QLabel(this);
-	qLabelFeatures->setText("Features");
+	qLabelFeatures->setText("->");
 
 	qLabelEffects = new QLabel(this);
-	qLabelEffects->setText("Effect");
+	qLabelEffects->setText("->");
 
 	// Layout
 	layout = new QHBoxLayout(this);
-	layout->addWidget(qLabelLabels);
 	layout->addWidget(comboBoxLabels);
 	layout->addWidget(qLabelFeatures);
 	layout->addWidget(comboBoxFeatures);
@@ -54,7 +49,7 @@ void EffectView::init(QWidget* parent) {
 	layout->addWidget(comboBoxEffects);
 
 	// Widget properties
-	setFixedWidth(parent->width());
+	setFixedWidth(parent->width() - 50);
 	setFixedHeight(EFFECT_VIEW_HEIGHT);
 }
 

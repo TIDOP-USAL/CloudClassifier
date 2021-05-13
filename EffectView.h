@@ -18,12 +18,12 @@
 #define EFFECT_PENALIZING "Penalizing"
 #define EFFECT_FAVORING "Favoring"
 
+#define EFFECT_VIEW_WIDTH 250
 #define EFFECT_VIEW_HEIGHT 50
 
 class EffectView : public QWidget {
 	Q_OBJECT
 private:
-	QLabel* qLabelLabels;
 	QLabel* qLabelFeatures;
 	QLabel* qLabelEffects;
 
@@ -58,5 +58,17 @@ public:
 
 	inline QString& getSelectedEffect() {
 		return comboBoxEffects->itemText(comboBoxEffects->currentIndex());
+	}
+
+	inline QComboBox* getComboBoxLabels() {
+		return comboBoxLabels;
+	}
+
+	inline QComboBox* getComboBoxFeatures() {
+		return comboBoxFeatures;
+	}
+
+	inline QComboBox* getComboBoxEffects() {
+		return comboBoxEffects;
 	}
 };
