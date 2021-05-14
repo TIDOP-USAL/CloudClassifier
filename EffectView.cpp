@@ -21,7 +21,9 @@ EffectView::~EffectView() {
 void EffectView::init(QWidget* parent) {
 	// Combo Boxes
 	comboBoxLabels = new QComboBox(this);
+	comboBoxLabels->setEnabled(false);
 	comboBoxFeatures = new QComboBox(this);
+	comboBoxFeatures->setEnabled(false);
 	update();
 
 	comboBoxEffects = new QComboBox(this);
