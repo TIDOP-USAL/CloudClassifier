@@ -17,14 +17,22 @@
 class FeatureView : public QWidget {
 	Q_OBJECT
 private:
+	unsigned int id;
 	QComboBox* comboBox;
 	QLabel* label;
 	QLineEdit* lineEdit;
 	QHBoxLayout* layout;
+	QPushButton* deleteButton;
 public:
-	FeatureView(QWidget* parent, const char* name);
+	FeatureView(unsigned int _id, QWidget* parent, const char* name);
 	~FeatureView();
+signals:
+	void deleteSignal(unsigned int);
 public:
+	inline unsigned int getID() const {
+		return id;
+	}
+
 	inline QString& getFeatureName() {
 		return comboBox->itemText(comboBox->currentIndex());
 	}

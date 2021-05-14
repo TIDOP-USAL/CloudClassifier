@@ -14,5 +14,5 @@ Analysis::Analysis(const Input& _input, float _gridResolution, unsigned int _num
 Analysis::Analysis(const Analysis& analysis) 
 	: input(analysis.input), gridResolution(analysis.gridResolution), numberOfNeighbors(analysis.numberOfNeighbors),
 	boundingBox(analysis.boundingBox), neighborhood(analysis.neighborhood), eigen(analysis.eigen) {
-	grid = analysis.grid; // If it's not working, use grid = PlanimetricGrid(input.getPoints(), Pmap(), boundingBox, gridResolution); instead
+	grid = analysis.grid;
 }

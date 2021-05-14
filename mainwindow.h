@@ -42,8 +42,11 @@ private:
 	QAction* actionAddLabel;
 	QAction* actionAddFeature;
 	QAction* actionAddEffect;
+	QAction* actionDelete;
 	QAction* actionRun;
 	QToolBar* classifierToolBar;
+
+	std::vector<LabelView*> labelViews;
 
 	QListWidget* listWidgetLabels;
 	QListWidget* listWidgetFeatures;
@@ -61,9 +64,15 @@ private:
 	std::vector<LabelView*> getLabelViews();
 	std::vector<FeatureView*> getFeatureViews();
 	std::vector<EffectView*> getEffectViews();
-protected:
+
+	template <typename T>
+	void addItem(QListWidget* listWidget, T* view);
+
+	template <typename T>
+	void deleteItem(QListWidget* listWidget, unsigned int id);
+private:
 	void changeEvent(QEvent* e);
-protected slots:
+private slots:
 	void open();
 	void addLabel();
 	void addFeature();

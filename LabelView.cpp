@@ -2,8 +2,8 @@
 
 #include <QColorDialog>
 
-LabelView::LabelView(const std::string& _text, QWidget* parent, const char* name) 
-	: text(_text) {
+LabelView::LabelView(unsigned int _id, const std::string& _text, QWidget* parent, const char* name) 
+	: id(_id), text(_text) {
 
 	color = QColor(0, 0, 0);
 	colorButton = new QPushButton(this);
@@ -34,12 +34,30 @@ LabelView::LabelView(const std::string& _text, QWidget* parent, const char* name
 	setLayout(layout);
 
 	connect(colorButton, &QPushButton::pressed, this, &LabelView::colorPicker);
+	connect(deleteButton, &QPushButton::pressed, this, [&]() {
+		emit deleteSignal(id);
+	});
+}
+
+LabelView::LabelView(const LabelView& labelView)
+	: id(0), text(labelView.text), color(labelView.color), colorButton(labelView.colorButton), deleteButton(labelView.deleteButton), 
+	lineEdit(labelView.lineEdit), layout(labelView.layout) {
 }
 
 LabelView::~LabelView() {
 	delete colorButton;
 	delete lineEdit;
 	delete layout;
+}
+
+LabelView& LabelView::operator=(const LabelView& labelView) {
+	text = labelView.text;
+	color = labelView.color;
+	colorButton = labelView.colorButton;
+	deleteButton = labelView.deleteButton;
+	lineEdit = labelView.lineEdit;
+	layout = labelView.layout;
+	return *this;
 }
 
 void LabelView::setText(const std::string& text) {
@@ -57,7 +75,7 @@ void LabelView::setColor(const QColor& color) {
 }
 
 void LabelView::setDeleteFunction(const std::function<void()>& fun) {
-	connect(deleteButton, &QPushButton::pressed, this, fun);
+	//connect(deleteButton, &QPushButton::pressed, this, fun);
 }
 
 void LabelView::colorPicker() {

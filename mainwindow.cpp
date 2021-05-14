@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 	actionAddLabel(new QAction(this)),
 	actionAddFeature(new QAction(this)),
 	actionAddEffect(new QAction(this)),
+	actionDelete(new QAction(this)),
 	actionRun(new QAction(this)) {
 	
 	initComponents();
@@ -128,6 +129,10 @@ void MainWindow::initComponents() {
 	iconEffect.addFile(QStringLiteral(":/ico/icons/effect.png"), QSize(), QIcon::Normal, QIcon::Off);
 	actionAddEffect->setIcon(iconEffect);
 
+	QIcon iconDelete;
+	iconDelete.addFile(QStringLiteral(":/ico/icons/delete.png"), QSize(), QIcon::Normal, QIcon::Off);
+	actionDelete->setIcon(iconDelete);
+
 	QIcon iconRun;
 	iconRun.addFile(QStringLiteral(":/ico/icons/play.png"), QSize(), QIcon::Normal, QIcon::Off);
 	actionRun->setIcon(iconRun);
@@ -135,6 +140,8 @@ void MainWindow::initComponents() {
 	classifierToolBar->addAction(actionAddLabel);
 	classifierToolBar->addAction(actionAddFeature);
 	classifierToolBar->addAction(actionAddEffect);
+	classifierToolBar->addSeparator();
+	classifierToolBar->addAction(actionDelete);
 	classifierToolBar->addSeparator();
 	classifierToolBar->addAction(actionRun);
 	addToolBar(Qt::LeftToolBarArea, classifierToolBar);
@@ -228,30 +235,52 @@ void MainWindow::open() {
 	}
 }
 
+template <typename T>
+void MainWindow::addItem(QListWidget* listWidget, T* view) {
+	QListWidgetItem* item = new QListWidgetItem(listWidget);
+	item->setSizeHint(QSize(view->width(), view->height()));
+	listWidget->setItemWidget(item, view);
+}
+
+template <typename T>
+void MainWindow::deleteItem(QListWidget* listWidget, unsigned int id) {
+	for (int i = 0; i < listWidget->count(); i++) {
+		QListWidgetItem* item = listWidget->item(i);
+		T* view = dynamic_cast<T*>(listWidget->itemWidget(item));
+		if (view->getID() == id) {
+			delete item;
+			break;
+		}
+	}
+}
+
 void MainWindow::addLabel() {
 	// Create view
 	static unsigned int index = 0;
-	std::string labelName = "Label " + std::to_string(++index);
-	LabelView* labelView = new LabelView(labelName, listWidgetLabels, labelName.c_str());
+	unsigned int deleteIndex = index;
+	std::string labelName = "Label " + std::to_string(index);
+	LabelView* labelView = new LabelView(index, labelName, listWidgetLabels, labelName.c_str());
 	// Add view
-	QListWidgetItem* item = new QListWidgetItem(listWidgetLabels);
-	item->setSizeHint(QSize(labelView->width(), labelView->height()));
-	listWidgetLabels->setItemWidget(item, labelView);
-	// Remove function
-	labelView->setDeleteFunction([&](void) {
-		listWidgetLabels->removeItemWidget(item);
+	addItem<LabelView>(listWidgetLabels, labelView);
+	// Remove label
+	connect(labelView, &LabelView::deleteSignal, [&](unsigned int id) {
+		deleteItem<LabelView>(listWidgetLabels, id);
 	});
+	index++;
 }
 
 void MainWindow::addFeature() {
 	// Create view
 	static unsigned int index = 0;
-	std::string featureName = "Feature " + std::to_string(++index);
-	FeatureView* featureView = new FeatureView(listWidgetFeatures, featureName.c_str());
+	std::string featureName = "Feature " + std::to_string(index);
+	FeatureView* featureView = new FeatureView(index, listWidgetFeatures, featureName.c_str());
 	// Add view
-	QListWidgetItem* item = new QListWidgetItem(listWidgetFeatures);
-	item->setSizeHint(QSize(featureView->width(), featureView->height()));
-	listWidgetFeatures->setItemWidget(item, featureView);
+	addItem<FeatureView>(listWidgetFeatures, featureView);
+	// Remove Feature
+	connect(featureView, &FeatureView::deleteSignal, [&](unsigned int id) {
+		deleteItem<FeatureView>(listWidgetFeatures, id);
+	});
+	index++;
 }
 
 void MainWindow::addEffects() {
@@ -293,7 +322,6 @@ void MainWindow::addEffects() {
 }
 
 void MainWindow::runModel() {
-
 	// Classification variables
 	float gridResolution = 0.1f;
 	unsigned int numberOfNeighbors = 200;

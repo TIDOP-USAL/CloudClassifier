@@ -17,6 +17,7 @@
 class LabelView : public QWidget {
 	Q_OBJECT
 private:
+	unsigned int id;
 	std::string text;
 	QColor color;
 	QPushButton* colorButton;
@@ -24,16 +25,25 @@ private:
 	QLineEdit* lineEdit;
 	QHBoxLayout* layout;
 public:
-	LabelView(const std::string& _text, QWidget* parent, const char* name);
+	LabelView(unsigned int _id, const std::string& _text, QWidget* parent, const char* name);
+	LabelView(const LabelView& labelView);
 	~LabelView();
+	LabelView& operator=(const LabelView& labelView);
 public:
 	void setText(const std::string& text);
 	void setColor(const QColor& color);
 	void setDeleteFunction(const std::function<void()>& fun);
+signals:
+	void deleteSignal(unsigned int);
 public slots:
 	void colorPicker();
 
 public:
+
+	inline unsigned int getID() const {
+		return id;
+	}
+
 	inline QString& getText() {
 		return lineEdit->text();
 	}
