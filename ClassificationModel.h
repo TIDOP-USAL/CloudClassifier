@@ -23,9 +23,8 @@ private:
 	Input* input;
 	Analysis* analysis;
 	FeatureManager* featureManager;
-	Classifier* classifier;
-
 	std::map<FeatureHandle, float> weightMap;
+	Classifier* classifier;
 public:
 	ClassificationModel(const std::string& _filePath, const LabelController& _labelController, 
 		const FeatureController& _featureController, const EffectController& _effectController);

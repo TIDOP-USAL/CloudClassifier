@@ -1,6 +1,8 @@
 #include "ClassificationModel.h"
 
 #include <QProgressDialog>
+#include <QObject>
+#include <QThread>
 
 ClassificationModel::ClassificationModel(const std::string& _filePath, const LabelController& _labelController, const FeatureController& _featureController, const EffectController& _effectController)
 	: filePath(_filePath), labelController(_labelController), featureController(_featureController), effectController(_effectController), 
@@ -8,6 +10,7 @@ ClassificationModel::ClassificationModel(const std::string& _filePath, const Lab
 }
 
 ClassificationModel::~ClassificationModel() {
+
 	if (input != nullptr) delete input;
 	if (analysis != nullptr) delete analysis;
 	if (featureManager != nullptr) delete featureManager;

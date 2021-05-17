@@ -22,6 +22,7 @@
 #include "ClassificationModel.h"
 
 #include "RunPopup.h"
+#include "LoadingPopup.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), 
@@ -355,6 +356,9 @@ void MainWindow::runModel() {
 	RunPopup* runPopup = new RunPopup(this, gridResolution, numberOfNeighbors, radiusNeighbors, radiusDtm);
 	if (runPopup->exec() != QDialog::Accepted)
 		return;
+	// Loading popup
+	LoadingPopup* loadingPopup = new LoadingPopup(this, "Loading CGAL");
+	loadingPopup->show();
 	// Get new variables
 	gridResolution = runPopup->getGridResolution();
 	numberOfNeighbors = runPopup->getNumberOfNeighbors();
@@ -373,4 +377,6 @@ void MainWindow::runModel() {
 	std::string path = filePath.toLocal8Bit().constData();
 	ClassificationModel classificationModel(path, labelController, featureController, effectController);
 	classificationModel.run(gridResolution, numberOfNeighbors, radiusNeighbors, radiusDtm, classificationType);
+	// End loading
+	loadingPopup->close();
 }
