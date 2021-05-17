@@ -165,6 +165,7 @@ void MainWindow::initSignalsAndSlots() {
 	connect(actionAddLabel, SIGNAL(triggered(bool)), this, SLOT(addLabel()));
 	connect(actionAddFeature, SIGNAL(triggered(bool)), this, SLOT(addFeature()));
 	connect(actionAddEffect, SIGNAL(triggered(bool)), this, SLOT(addEffects()));
+	connect(actionDelete, SIGNAL(triggered(bool)), this, SLOT(deleteViews()));
 	connect(actionRun, SIGNAL(triggered(bool)), this, SLOT(runModel()));
 }
 
@@ -172,14 +173,17 @@ void MainWindow::initDocks() {
 	// Dock label
 	listWidgetLabels = new QListWidget(this);
 	listWidgetLabels->setResizeMode(QListWidget::Adjust);
+	listWidgetLabels->setSelectionMode(QAbstractItemView::MultiSelection);
 	ui->dockLabel->setWidget(listWidgetLabels);
 	// Dock features
 	listWidgetFeatures = new QListWidget(this);
 	listWidgetFeatures->setResizeMode(QListWidget::Adjust);
+	listWidgetFeatures->setSelectionMode(QAbstractItemView::MultiSelection);
 	ui->dockFeatures->setWidget(listWidgetFeatures);
 	// Dock effects
 	listWidgetEffects = new QListWidget(this);
 	listWidgetEffects->setResizeMode(QListWidget::Adjust);
+	listWidgetEffects->setSelectionMode(QAbstractItemView::NoSelection);
 	ui->dockEffects->setWidget(listWidgetEffects);
 
 }
@@ -214,13 +218,24 @@ std::vector<EffectView*> MainWindow::getEffectViews() {
 	return effectViews;
 }
 
+void MainWindow::resizeEffectListWidget() {
+	for (int i = 0; i < listWidgetEffects->count(); i++) {
+		QListWidgetItem* item = listWidgetEffects->item(i);
+		EffectView* effectView = dynamic_cast<EffectView*>(listWidgetEffects->itemWidget(item));
+		effectView->updateSize();
+	}
+}
+
+void MainWindow::resizeEvent(QResizeEvent* e) {
+	QMainWindow::resizeEvent(e);
+	resizeEffectListWidget();
+}
+
 void MainWindow::changeEvent(QEvent* e) {
 	QMainWindow::changeEvent(e);
 	switch (e->type()) {
 	case QEvent::LanguageChange:
 		ui->retranslateUi(this);
-		break;
-	default:
 		break;
 	}
 }
@@ -281,6 +296,13 @@ void MainWindow::addFeature() {
 		deleteItem<FeatureView>(listWidgetFeatures, id);
 	});
 	index++;
+}
+
+void MainWindow::deleteViews() {
+	for (QListWidgetItem* item : listWidgetLabels->selectedItems())
+		delete item;
+	for (QListWidgetItem* item : listWidgetFeatures->selectedItems())
+		delete item;
 }
 
 void MainWindow::addEffects() {

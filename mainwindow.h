@@ -55,7 +55,6 @@ private:
 	std::vector<std::string> comboLabelsVec;
 	std::vector<std::string> comboFeaturesVec;
 
-private:
 	QString filePath;
 private:
 	void initComponents();
@@ -71,11 +70,14 @@ private:
 	template <typename T>
 	void deleteItem(QListWidget* listWidget, unsigned int id);
 private:
+	void resizeEffectListWidget();
+	void resizeEvent(QResizeEvent* e);
 	void changeEvent(QEvent* e);
 private slots:
 	void open();
 	void addLabel();
 	void addFeature();
+	void deleteViews();
 	void addEffects();
 	void runModel();
 public:

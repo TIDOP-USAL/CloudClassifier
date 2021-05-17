@@ -18,15 +18,13 @@
 #define EFFECT_PENALIZING "Penalizing"
 #define EFFECT_FAVORING "Favoring"
 
-#define EFFECT_VIEW_WIDTH 250
+#define EFFECT_VIEW_WIDTH 850
 #define EFFECT_VIEW_HEIGHT 50
 
 class EffectView : public QWidget {
 	Q_OBJECT
 private:
-	QLabel* qLabelFeatures;
-	QLabel* qLabelEffects;
-
+	QWidget* parent;
 	QComboBox* comboBoxLabels;
 	QComboBox* comboBoxFeatures;
 	QComboBox* comboBoxEffects;
@@ -41,10 +39,11 @@ private:
 public:
 	EffectView(QWidget* parent, const char* name);
 	EffectView(const std::vector<std::string>& _comboLabels, const std::vector<std::string>& _comboFeatures, QWidget* parent, const char* name);
-	~EffectView();
+	~EffectView() = default;
 private:
 	void init(QWidget* parent);
 public:
+	void updateSize();
 	void update();
 public:
 

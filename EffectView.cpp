@@ -9,16 +9,10 @@ EffectView::EffectView(const std::vector<std::string>& _comboLabels, const std::
 	init(parent);
 }
 
-EffectView::~EffectView() {
-	delete qLabelFeatures;
-	delete qLabelEffects;
-	delete comboBoxLabels;
-	delete comboBoxFeatures;
-	delete comboBoxEffects;
-	delete layout;
-}
-
 void EffectView::init(QWidget* parent) {
+
+	this->parent = parent;
+
 	// Combo Boxes
 	comboBoxLabels = new QComboBox(this);
 	comboBoxLabels->setEnabled(false);
@@ -35,22 +29,30 @@ void EffectView::init(QWidget* parent) {
 	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBoxLabels->itemText(comboBoxLabels->currentIndex()); });
 	connect(comboBoxLabels, QOverload<int>::of(&QComboBox::activated), [=](int index) { comboBoxLabels->itemText(comboBoxLabels->currentIndex()); });
 
-	// QLabels
-	qLabelFeatures = new QLabel(this);
-	qLabelFeatures->setText("->");
+	const QString lineStyleSheet = "background-color: rgb(150, 150, 255);";
+	QFrame* line = new QFrame(this);
+	line->setFrameShape(QFrame::HLine);
+	line->setFrameShadow(QFrame::Sunken);
+	line->setStyleSheet(lineStyleSheet);
 
-	qLabelEffects = new QLabel(this);
-	qLabelEffects->setText("->");
+	QFrame* line2 = new QFrame(this);
+	line2->setFrameShape(QFrame::HLine);
+	line2->setFrameShadow(QFrame::Sunken);
+	line2->setStyleSheet(lineStyleSheet);
 
 	// Layout
 	layout = new QHBoxLayout(this);
 	layout->addWidget(comboBoxLabels);
-	layout->addWidget(qLabelFeatures);
+	layout->addWidget(line);
 	layout->addWidget(comboBoxFeatures);
-	layout->addWidget(qLabelEffects);
+	layout->addWidget(line2);
 	layout->addWidget(comboBoxEffects);
 
 	// Widget properties
+	updateSize();
+}
+
+void EffectView::updateSize() {
 	setFixedWidth(parent->width() - 50);
 	setFixedHeight(EFFECT_VIEW_HEIGHT);
 }
