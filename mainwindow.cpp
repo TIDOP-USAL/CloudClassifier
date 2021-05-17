@@ -336,7 +336,8 @@ void MainWindow::addEffects() {
 			QListWidgetItem* item = new QListWidgetItem(listWidgetEffects);
 			item->setSizeHint(QSize(effectView->width(), effectView->height()));
 			int color = 1 / 3 * 255 + (colorIndex % 2) * 255 * 2 / 3;
-			item->setBackgroundColor(QColor(color, 120, 255, 25));
+			int alpha = 50;
+			item->setBackgroundColor(QColor(color, 120, 255, alpha));
 			listWidgetEffects->setItemWidget(item, effectView);
 		}
 		colorIndex++;
