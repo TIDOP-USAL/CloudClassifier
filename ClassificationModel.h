@@ -13,6 +13,8 @@
 #include "FeatureManager.h"
 #include "Classifier.h"
 
+#include <QProgressDialog>
+
 class ClassificationModel {
 private:
 	LabelController labelController;

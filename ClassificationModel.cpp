@@ -1,8 +1,8 @@
 #include "ClassificationModel.h"
 
-#include <QProgressDialog>
-#include <QObject>
-#include <QThread>
+#include "WProgressDialog.h"
+
+#define FUNC(F, ...) [&]() {F(__VA_ARGS__);}
 
 ClassificationModel::ClassificationModel(const std::string& _filePath, const LabelController& _labelController, const FeatureController& _featureController, const EffectController& _effectController)
 	: filePath(_filePath), labelController(_labelController), featureController(_featureController), effectController(_effectController), 
@@ -68,14 +68,28 @@ void ClassificationModel::applyEffects() {
 
 void ClassificationModel::run(float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, const ClassificationType& classificationType) {
 
+	unsigned int max = 4;
+	unsigned int progress = 0;
+
+	WProgressDialog progressDialog("Title", "Label", 0, max);
+
+	progressDialog.setLabel("Loading input");
 	initInput(filePath);
+	progressDialog.setValue(++progress);
+
+	progressDialog.setLabel("Loading features");
 	initAnalysis(gridResolution, numberOfNeighbors);
 	initFeatureManager(radiusNeighbors, radiusDtm);
-	initClassifier();
+	progressDialog.setValue(++progress);
 
+	progressDialog.setLabel("Initializing classification");
+	initClassifier();
 	applyWeights();
 	applyEffects();
+	progressDialog.setValue(++progress);
 
+	progressDialog.setLabel("Classifying");
 	classifier->classify(classificationType);
 	classifier->save();
+	progressDialog.setValue(++progress);
 }
