@@ -42,9 +42,12 @@ private:
 	QAction* actionAddLabel;
 	QAction* actionAddFeature;
 	QAction* actionAddEffect;
+	QAction* actionTrain;
+	QToolBar* classifierToolBar;
+
 	QAction* actionDelete;
 	QAction* actionRun;
-	QToolBar* classifierToolBar;
+	QToolBar* runToolBar;
 
 	std::vector<LabelView*> labelViews;
 
@@ -80,6 +83,7 @@ private slots:
 	void deleteViews();
 	void addEffects();
 	void runModel();
+	void runTraining();
 public:
 	explicit MainWindow(QWidget *parent = nullptr);
 	~MainWindow();

@@ -2,15 +2,12 @@
 
 #include "WProgressDialog.h"
 
-#define FUNC(F, ...) [&]() {F(__VA_ARGS__);}
-
 ClassificationModel::ClassificationModel(const std::string& _filePath, const LabelController& _labelController, const FeatureController& _featureController, const EffectController& _effectController)
 	: filePath(_filePath), labelController(_labelController), featureController(_featureController), effectController(_effectController), 
 	input(nullptr), analysis(nullptr), featureManager(nullptr), classifier(nullptr) {
 }
 
 ClassificationModel::~ClassificationModel() {
-
 	if (input != nullptr) delete input;
 	if (analysis != nullptr) delete analysis;
 	if (featureManager != nullptr) delete featureManager;
@@ -67,7 +64,6 @@ void ClassificationModel::applyEffects() {
 }
 
 void ClassificationModel::run(float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, const ClassificationType& classificationType) {
-
 	unsigned int max = 4;
 	unsigned int progress = 0;
 

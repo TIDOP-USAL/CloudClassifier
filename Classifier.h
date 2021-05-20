@@ -6,6 +6,10 @@
 
 typedef CGAL::Classification::Sum_of_weighted_features_classifier CGALclassifier;
 
+#define CLASSIFICATION_RAW "Raw"
+#define CLASSIFICATION_LOCAL_SMOOTHING "Local Smoothing"
+#define CLASSIFICATION_GRAPHCUT "Graphcut"
+
 enum class ClassificationType {
 	NONE, RAW, LOCAL_SMOOTHING, GRAPHCUT
 };

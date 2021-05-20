@@ -10,10 +10,6 @@
 
 #define RUN_POPUP_TITLE "Run classification"
 
-#define CLASSIFICATION_RAW "Raw"
-#define CLASSIFICATION_LOCAL_SMOOTHING "Local Smoothing"
-#define CLASSIFICATION_GRAPHCUT "Graphcut"
-
 class RunPopup : public QDialog {
 	Q_OBJECT
 private:
@@ -51,7 +47,7 @@ public:
 		return spinRadiusDtm->value();
 	}
 
-	inline QString getClassificationType() {
+	inline QString& getClassificationType() {
 		return comboClassification->itemText(comboClassification->currentIndex());
 	}
 };

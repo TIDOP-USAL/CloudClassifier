@@ -6,8 +6,6 @@
 
 #include <CGAL/IO/read_ply_points.h>
 
-#include "LoadingPopup.h"
-
 Input::Input(const std::string& _filePath) : filePath(_filePath) {
 	readPointCloud();
 	labelManager = LabelManager();

@@ -235,6 +235,8 @@ private:
 
 		hwnd = CreateWindowEx(0, &className[0], &title[0], WS_CAPTION | WS_POPUPWINDOW | WS_VISIBLE,
 			x, y, WPROGRESSDIALOG_WIDTH, WPROGRESSDIALOG_HEIGHT, NULL, NULL, hInstance, NULL);
+
+		WProgressDialog::windowCounter++;
 	}
 
 	void pollEvents() {

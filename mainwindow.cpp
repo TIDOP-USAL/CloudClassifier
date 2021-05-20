@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 	actionAddLabel(new QAction(this)),
 	actionAddFeature(new QAction(this)),
 	actionAddEffect(new QAction(this)),
+	actionTrain(new QAction(this)),
 	actionDelete(new QAction(this)),
 	actionRun(new QAction(this)) {
 	
@@ -99,6 +100,9 @@ void MainWindow::initComponents() {
 
 	// Viewer tool bar
 	mToolBar3dModel = new QToolBar(this);
+	mToolBar3dModel->setMovable(false);
+	mToolBar3dModel->setOrientation(Qt::Orientation::Vertical);
+
 	mToolBar3dModel->setToolTip(tr("Viewing Tools"));
 	mToolBar3dModel->setStatusTip(tr("Viewing Tools"));
 	mToolBar3dModel->setObjectName("ToolBar3dModel");
@@ -110,7 +114,7 @@ void MainWindow::initComponents() {
 	mToolBar3dModel->addAction(mActionViewBottom);
 	mToolBar3dModel->addAction(mActionViewLeft);
 	mToolBar3dModel->addAction(mActionViewRight);
-	this->addToolBar(Qt::TopToolBarArea, mToolBar3dModel);
+	this->addToolBar(Qt::RightToolBarArea, mToolBar3dModel);
 
 	// Classifier tool bar
 	classifierToolBar = new QToolBar(this);
@@ -129,6 +133,22 @@ void MainWindow::initComponents() {
 	iconEffect.addFile(QStringLiteral(":/ico/icons/effect.png"), QSize(), QIcon::Normal, QIcon::Off);
 	actionAddEffect->setIcon(iconEffect);
 
+	QIcon iconTrain;
+	iconTrain.addFile(QStringLiteral(":/ico/icons/train.png"), QSize(), QIcon::Normal, QIcon::Off);
+	actionTrain->setIcon(iconTrain);
+
+	classifierToolBar->addAction(actionAddLabel);
+	classifierToolBar->addAction(actionAddFeature);
+	classifierToolBar->addAction(actionAddEffect);
+	classifierToolBar->addSeparator();
+	classifierToolBar->addAction(actionTrain);
+	addToolBar(Qt::LeftToolBarArea, classifierToolBar);
+
+	// Run tool bar
+	runToolBar = new QToolBar(this);
+	runToolBar->setMovable(false);
+	runToolBar->setOrientation(Qt::Orientation::Vertical);
+
 	QIcon iconDelete;
 	iconDelete.addFile(QStringLiteral(":/ico/icons/delete.png"), QSize(), QIcon::Normal, QIcon::Off);
 	actionDelete->setIcon(iconDelete);
@@ -137,14 +157,9 @@ void MainWindow::initComponents() {
 	iconRun.addFile(QStringLiteral(":/ico/icons/play.png"), QSize(), QIcon::Normal, QIcon::Off);
 	actionRun->setIcon(iconRun);
 
-	classifierToolBar->addAction(actionAddLabel);
-	classifierToolBar->addAction(actionAddFeature);
-	classifierToolBar->addAction(actionAddEffect);
-	classifierToolBar->addSeparator();
-	classifierToolBar->addAction(actionDelete);
-	classifierToolBar->addSeparator();
-	classifierToolBar->addAction(actionRun);
-	addToolBar(Qt::LeftToolBarArea, classifierToolBar);
+	runToolBar->addAction(actionDelete);
+	runToolBar->addAction(actionRun);
+	addToolBar(Qt::TopToolBarArea, runToolBar);
 
 	// Dock Label
 	initDocks();
@@ -165,6 +180,7 @@ void MainWindow::initSignalsAndSlots() {
 	connect(actionAddLabel, SIGNAL(triggered(bool)), this, SLOT(addLabel()));
 	connect(actionAddFeature, SIGNAL(triggered(bool)), this, SLOT(addFeature()));
 	connect(actionAddEffect, SIGNAL(triggered(bool)), this, SLOT(addEffects()));
+	connect(actionTrain, SIGNAL(triggered(bool)), this, SLOT(runTraining()));
 	connect(actionDelete, SIGNAL(triggered(bool)), this, SLOT(deleteViews()));
 	connect(actionRun, SIGNAL(triggered(bool)), this, SLOT(runModel()));
 }
@@ -373,4 +389,20 @@ void MainWindow::runModel() {
 	std::string path = filePath.toLocal8Bit().constData();
 	ClassificationModel classificationModel(path, labelController, featureController, effectController);
 	classificationModel.run(gridResolution, numberOfNeighbors, radiusNeighbors, radiusDtm, classificationType);
+}
+
+void MainWindow::runTraining() {
+
+	std::vector<LabelView*> labelViews = getLabelViews();
+	if (labelViews.empty()) {
+		QMessageBox msgBox(this);
+		msgBox.setIcon(QMessageBox::Critical);
+		msgBox.setText("No labels");
+		msgBox.exec();
+		return;
+	}
+
+
+
+	//TrainController(labelViews, trainView);
 }

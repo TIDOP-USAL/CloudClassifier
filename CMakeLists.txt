@@ -16,6 +16,9 @@ set(SOURCES
 	src/EffectController.cpp
 	src/ClassificationModel.cpp
 	src/RunPopup.cpp
+	src/TrainView.cpp
+	src/TrainController.cpp
+	src/TrainModel.cpp
 	PARENT_SCOPE)
 	
 set(HEADERS
@@ -39,4 +42,7 @@ set(HEADERS
 	src/ClassificationModel.h
 	src/RunPopup.h
 	src/WProgressDialog.h
+	src/TrainView.h
+	src/TrainController.h
+	src/TrainModel.h
 	PARENT_SCOPE)
