@@ -9,11 +9,19 @@
 class TrainController {
 private:
 	std::vector<LabelView*> labelViews;
-	TrainView trainView;	// Get info from here and send it to the model
+	TrainView trainView;
 public:
 	TrainController(const std::vector<LabelView*>& _labelViews, const TrainView& _trainView);
+	TrainController(const TrainController& trainController);
+	TrainController(TrainController&& trainController) noexcept;
 	TrainController() = default;
 	~TrainController() = default;
 public:
+	inline unsigned int getScales() {
+		return trainView.getScales();
+	}
 
+	inline unsigned int getNumberOfTests() {
+		return trainView.getNumberOfTests();
+	}
 };

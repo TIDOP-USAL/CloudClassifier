@@ -22,6 +22,9 @@
 #include "ClassificationModel.h"
 
 #include "RunPopup.h"
+#include "TrainView.h"
+#include "TrainController.h"
+#include "TrainModel.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), 
@@ -402,7 +405,14 @@ void MainWindow::runTraining() {
 		return;
 	}
 
-
-
-	//TrainController(labelViews, trainView);
+	// View
+	unsigned int scales = 5;
+	unsigned int tests = 800;
+	TrainView* trainView = new TrainView(this, scales, tests);
+	if (trainView->exec() != QDialog::Accepted)
+		return;
+	// Controller
+	TrainController trainController(labelViews, *trainView);
+	// Model
+	TrainModel trainModel(trainController);
 }

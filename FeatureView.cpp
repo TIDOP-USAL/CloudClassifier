@@ -20,6 +20,7 @@ FeatureView::FeatureView(unsigned int _id, QWidget* parent, const char* name)
 	label->setText("Weight: ");
 
 	lineEdit = new QLineEdit(this);
+	lineEdit->setValidator(new QDoubleValidator(0, 100, 2, this));
 	lineEdit->setText("0.0");
 
 	deleteButton = new QPushButton(this);

@@ -16,6 +16,7 @@ set(SOURCES
 	src/EffectController.cpp
 	src/ClassificationModel.cpp
 	src/RunPopup.cpp
+	src/WProgressDialog.cpp
 	src/TrainView.cpp
 	src/TrainController.cpp
 	src/TrainModel.cpp
