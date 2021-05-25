@@ -64,28 +64,17 @@ void ClassificationModel::applyEffects() {
 }
 
 void ClassificationModel::run(float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, const ClassificationType& classificationType) {
-	unsigned int max = 4;
-	unsigned int progress = 0;
 
-	WProgressDialog progressDialog("Title", "Label", 0, max);
+	unsigned int progress = 0, maxProgress = 8;
+	WProgressDialog progressDialog("Classifying", "Label", 0, maxProgress);
+	#define PROGRESS(S, F, ...) progressDialog.setLabel(std::string(S)); F(__VA_ARGS__); progressDialog.setValue(++progress)
 
-	progressDialog.setLabel("Loading input");
-	initInput(filePath);
-	progressDialog.setValue(++progress);
-
-	progressDialog.setLabel("Loading features");
-	initAnalysis(gridResolution, numberOfNeighbors);
-	initFeatureManager(radiusNeighbors, radiusDtm);
-	progressDialog.setValue(++progress);
-
-	progressDialog.setLabel("Initializing classification");
-	initClassifier();
-	applyWeights();
-	applyEffects();
-	progressDialog.setValue(++progress);
-
-	progressDialog.setLabel("Classifying");
-	classifier->classify(classificationType);
-	classifier->save();
-	progressDialog.setValue(++progress);
+	PROGRESS("Loading input...", initInput, filePath);
+	PROGRESS("Loading analysis...", initAnalysis, gridResolution, numberOfNeighbors);
+	PROGRESS("Loading features...", initFeatureManager, radiusNeighbors, radiusDtm);
+	PROGRESS("Loading classifier", initClassifier);
+	PROGRESS("Applying weights...", applyWeights);
+	PROGRESS("Apply effects...", applyEffects);
+	PROGRESS("Classifying...", classifier->classify, classificationType);
+	PROGRESS("Saving...", classifier->save);
 }

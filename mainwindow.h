@@ -13,10 +13,6 @@
 #include "FeatureView.h"
 #include "EffectView.h"
 
-#include "LabelView.h"
-#include "FeatureView.h"
-#include "EffectView.h"
-
 class CCViewer3D;
 class QAction;
 class QToolBar;

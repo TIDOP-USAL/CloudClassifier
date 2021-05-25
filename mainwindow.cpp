@@ -22,9 +22,20 @@
 #include "ClassificationModel.h"
 
 #include "RunPopup.h"
+
 #include "TrainView.h"
 #include "TrainController.h"
 #include "TrainModel.h"
+
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <CGAL/Simple_cartesian.h>
+#include <CGAL/Classification.h>
+#include <CGAL/Point_set_3.h>
+#include <CGAL/Point_set_3/IO.h>
+#include <CGAL/Real_timer.h>
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), 
@@ -404,7 +415,6 @@ void MainWindow::runTraining() {
 		msgBox.exec();
 		return;
 	}
-
 	// View
 	unsigned int scales = 5;
 	unsigned int tests = 800;
@@ -412,7 +422,9 @@ void MainWindow::runTraining() {
 	if (trainView->exec() != QDialog::Accepted)
 		return;
 	// Controller
-	TrainController trainController(labelViews, *trainView);
+	std::string path = filePath.toLocal8Bit().constData();
+	TrainController trainController(path, labelViews, *trainView);
 	// Model
 	TrainModel trainModel(trainController);
+	trainModel.run();
 }

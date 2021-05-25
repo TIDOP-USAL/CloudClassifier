@@ -8,15 +8,24 @@
 
 class TrainController {
 private:
+	std::string filePath;
 	std::vector<LabelView*> labelViews;
 	TrainView trainView;
 public:
-	TrainController(const std::vector<LabelView*>& _labelViews, const TrainView& _trainView);
+	TrainController(const std::string& _filePath, const std::vector<LabelView*>& _labelViews, const TrainView& _trainView);
 	TrainController(const TrainController& trainController);
 	TrainController(TrainController&& trainController) noexcept;
 	TrainController() = default;
 	~TrainController() = default;
 public:
+	inline std::string getFilePath() {
+		return filePath;
+	}
+
+	inline std::vector<LabelView*>& getLabelViews() {
+		return labelViews;
+	}
+
 	inline unsigned int getScales() {
 		return trainView.getScales();
 	}
