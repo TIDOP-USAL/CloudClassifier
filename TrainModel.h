@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <map>
 
 #include <CGAL/Simple_cartesian.h>
 #include <CGAL/Classification.h>
@@ -40,6 +41,7 @@ private:
 	CLabelSet labelSet;
 	CGALClassifier* classifier;
 	std::vector<int> labelIndices;
+	std::map<LabelView*, LabelHandle> mapLabels;
 public:
 	TrainModel(const TrainController& _trainController);
 	TrainModel(const TrainModel& trainModel);
@@ -53,8 +55,9 @@ private:
 	void train();
 	void classify();
 	void evaluation();
+	std::string& getNewFilePath(const std::string& ext);
 	void save(const std::string& filePath);
-	void save();
+	inline void save();
 public:
 	void run();
 public:

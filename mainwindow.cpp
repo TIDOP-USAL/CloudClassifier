@@ -407,6 +407,9 @@ void MainWindow::runModel() {
 
 void MainWindow::runTraining() {
 
+	ui->dockFeatures->close();
+	ui->dockEffects->close();
+
 	std::vector<LabelView*> labelViews = getLabelViews();
 	if (labelViews.empty()) {
 		QMessageBox msgBox(this);
