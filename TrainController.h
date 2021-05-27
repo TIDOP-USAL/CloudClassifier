@@ -26,6 +26,10 @@ public:
 		return labelViews;
 	}
 
+	inline QString& getClassificationType() {
+		return trainView.getClassificationType();
+	}
+
 	inline unsigned int getScales() {
 		return trainView.getScales();
 	}

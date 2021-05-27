@@ -19,7 +19,7 @@ typedef CKernel::Point_3 CPoint;
 typedef CGAL::Point_set_3<CPoint> Point_set;
 typedef Kernel::Iso_cuboid_3 Iso_cuboid_3;
 typedef Point_set::Point_map PointMap;
-typedef Point_set::Property_map<int> Imap;
+typedef Point_set::Property_map<float> Imap;
 namespace Classification = CGAL::Classification;
 
 typedef Classification::Label_handle												CLabelHandle;
@@ -55,7 +55,7 @@ private:
 	void train();
 	void classify();
 	void evaluation();
-	std::string& getNewFilePath(const std::string& ext);
+	std::string& getNewFilePath(const std::string& ext, const std::string format = "");
 	void save(const std::string& filePath);
 	inline void save();
 public:

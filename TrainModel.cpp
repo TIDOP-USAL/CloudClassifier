@@ -43,11 +43,11 @@ void TrainModel::initInput() {
 	std::ifstream in(path, std::ios::binary);
 	in >> pts;
 	bool found = false;
-	std::tie(labelMap, found) = pts.property_map<int>("label");
+	std::tie(labelMap, found) = pts.property_map<float>("label");
 	if (!found) {
 		QMessageBox msgBox;
 		msgBox.setIcon(QMessageBox::Critical);
-		msgBox.setText("Label property not found in input file");
+		msgBox.setText("'property float label' not found in input file");
 		msgBox.exec();
 	}
 }
@@ -81,16 +81,24 @@ void TrainModel::classify() {
 
 	labelIndices = std::vector<int>(pts.size(), -1);
 
-	//float radiusNeighbors = 0.1f;
-	//CGAL::Classification::classify_with_local_smoothing<CGAL::Parallel_if_available_tag>
-		//(pts,pts.point_map(), labelSet,
-		//*classifier, featureGenerator->neighborhood().sphere_neighbor_query
-		//(radiusNeighbors), labelIndices);
-
-	Classification::classify_with_graphcut<CGAL::Parallel_if_available_tag>
-		(pts, pts.point_map(), labelSet, *classifier,
-			featureGenerator->neighborhood().k_neighbor_query(12),
-			0.2f, 10, labelIndices);
+	QString classificationStr = trainController.getClassificationType();
+	if (classificationStr == QString(CLASSIFICATION_RAW)) {
+		CGAL::Classification::classify<CGAL::Parallel_if_available_tag>
+			(pts, labelSet, *classifier, labelIndices);
+	}
+	else if (classificationStr == QString(CLASSIFICATION_LOCAL_SMOOTHING)) {
+		float radiusNeighbors = 0.1f;
+		CGAL::Classification::classify_with_local_smoothing<CGAL::Parallel_if_available_tag>
+			(pts,pts.point_map(), labelSet,
+			*classifier, featureGenerator->neighborhood().sphere_neighbor_query
+			(radiusNeighbors), labelIndices);
+	}
+	else if (classificationStr == QString(CLASSIFICATION_GRAPHCUT)) {
+		Classification::classify_with_graphcut<CGAL::Parallel_if_available_tag>
+			(pts, pts.point_map(), labelSet, *classifier,
+				featureGenerator->neighborhood().k_neighbor_query(12),
+				0.2f, 10, labelIndices);
+	}
 }
 
 void TrainModel::evaluation() {
@@ -105,12 +113,12 @@ void TrainModel::evaluation() {
 	std::cerr << "Accuracy = " << evaluation.accuracy() << std::endl
 		<< "Mean F1 score = " << evaluation.mean_f1_score() << std::endl
 		<< "Mean IoU = " << evaluation.mean_intersection_over_union() << std::endl;
-	std::ofstream fconfig("config.xml");
+	std::ofstream fconfig(getNewFilePath("-config", "xml"));
 	classifier->save_configuration(fconfig);
 	fconfig.close();
 }
 
-std::string& TrainModel::getNewFilePath(const std::string& ext) {
+std::string& TrainModel::getNewFilePath(const std::string& ext, const std::string format) {
 
 	auto split = [&](const std::string str, const std::string& delim) {
 		std::vector<std::string> tokens;
@@ -132,7 +140,10 @@ std::string& TrainModel::getNewFilePath(const std::string& ext) {
 	
 	for (int i = 0; i < pathSplitted.size() - 1; i++)
 		filePath += pathSplitted[i] + "/";
-	filePath += nameSplitted[0] + ext + "." + nameSplitted[1];
+	if(format == "")
+		filePath += nameSplitted[0] + ext + "." + nameSplitted[1];
+	else
+		nameSplitted[0] + ext + "." + format;
 	return filePath;
 }
 
@@ -166,7 +177,6 @@ void TrainModel::save(const std::string& filePath) {
 	for (auto& p : pointRange)
 		points.push_back(CPoint(p.x(), p.y(), p.z()));
 
-
 	CGAL::write_ply_points_with_properties
 	(f, CGAL::make_range(boost::counting_iterator<std::size_t>(0),
 		boost::counting_iterator<std::size_t>(pts.size())),
@@ -174,6 +184,8 @@ void TrainModel::save(const std::string& filePath) {
 		std::make_pair(CGAL::make_property_map(red), CGAL::PLY_property<unsigned char>("red")),
 		std::make_pair(CGAL::make_property_map(green), CGAL::PLY_property<unsigned char>("green")),
 		std::make_pair(CGAL::make_property_map(blue), CGAL::PLY_property<unsigned char>("blue")));
+
+	// Show information in a popup
 }
 
 void TrainModel::save() {
@@ -181,7 +193,6 @@ void TrainModel::save() {
 }
 
 void TrainModel::run() {
-
 	unsigned int progress = 0, maxProgress = 7;
 	WProgressDialog progressDialog("Train", "Loading input...", 0, maxProgress);
 
