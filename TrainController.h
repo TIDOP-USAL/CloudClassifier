@@ -37,4 +37,8 @@ public:
 	inline unsigned int getNumberOfTests() {
 		return trainView.getNumberOfTests();
 	}
+
+	inline QString& getPropertyName() {
+		return trainView.getPropertyName();
+	}
 };

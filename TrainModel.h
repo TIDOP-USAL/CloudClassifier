@@ -55,7 +55,7 @@ private:
 	void train();
 	void classify();
 	void evaluation();
-	std::string& getNewFilePath(const std::string& ext, const std::string format = "");
+	std::string& getNewFilePath(const std::string& ext);
 	void save(const std::string& filePath);
 	inline void save();
 public:

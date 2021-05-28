@@ -39,15 +39,20 @@ TrainModel::~TrainModel() {
 }
 
 void TrainModel::initInput() {
+
 	std::string path = trainController.getFilePath();
 	std::ifstream in(path, std::ios::binary);
 	in >> pts;
+	
+	std::string propertyName = trainController.getPropertyName().toLocal8Bit().constData();
 	bool found = false;
-	std::tie(labelMap, found) = pts.property_map<float>("label");
+	std::tie(labelMap, found) = pts.property_map<float>(propertyName);
+
 	if (!found) {
 		QMessageBox msgBox;
 		msgBox.setIcon(QMessageBox::Critical);
-		msgBox.setText("'property float label' not found in input file");
+		std::string msg = "'property float " + propertyName + "'" + " not found in input file";
+		msgBox.setText(msg.c_str());
 		msgBox.exec();
 	}
 }
@@ -113,12 +118,13 @@ void TrainModel::evaluation() {
 	std::cerr << "Accuracy = " << evaluation.accuracy() << std::endl
 		<< "Mean F1 score = " << evaluation.mean_f1_score() << std::endl
 		<< "Mean IoU = " << evaluation.mean_intersection_over_union() << std::endl;
-	std::ofstream fconfig(getNewFilePath("-config", "xml"));
+	std::string configPath = trainController.getFilePath() + ".xml";
+	std::ofstream fconfig(configPath);
 	classifier->save_configuration(fconfig);
 	fconfig.close();
 }
 
-std::string& TrainModel::getNewFilePath(const std::string& ext, const std::string format) {
+std::string& TrainModel::getNewFilePath(const std::string& ext) {
 
 	auto split = [&](const std::string str, const std::string& delim) {
 		std::vector<std::string> tokens;
@@ -140,10 +146,9 @@ std::string& TrainModel::getNewFilePath(const std::string& ext, const std::strin
 	
 	for (int i = 0; i < pathSplitted.size() - 1; i++)
 		filePath += pathSplitted[i] + "/";
-	if(format == "")
-		filePath += nameSplitted[0] + ext + "." + nameSplitted[1];
-	else
-		nameSplitted[0] + ext + "." + format;
+
+	filePath += nameSplitted[0] + ext + "." + nameSplitted[1];
+
 	return filePath;
 }
 
@@ -184,8 +189,6 @@ void TrainModel::save(const std::string& filePath) {
 		std::make_pair(CGAL::make_property_map(red), CGAL::PLY_property<unsigned char>("red")),
 		std::make_pair(CGAL::make_property_map(green), CGAL::PLY_property<unsigned char>("green")),
 		std::make_pair(CGAL::make_property_map(blue), CGAL::PLY_property<unsigned char>("blue")));
-
-	// Show information in a popup
 }
 
 void TrainModel::save() {

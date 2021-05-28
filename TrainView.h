@@ -2,6 +2,7 @@
 
 #include <QDialog>
 #include <QSpinBox>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QComboBox>
 #include <QLayout>
@@ -16,12 +17,13 @@ private:
 	QGridLayout* layout;
 	QSpinBox* scalesSpinBox;
 	QSpinBox* testsSpinBox;
+	QLineEdit* propertyEdit;
 	QComboBox* comboClassification;
 	QPushButton* buttonAccept;
 	QPushButton* buttonCancel;
 public:
 	TrainView(QWidget* parent = nullptr);
-	TrainView(QWidget* parent, unsigned int scales, unsigned int tests);
+	TrainView(QWidget* parent, unsigned int scales, unsigned int tests, const std::string& propertyName);
 	TrainView(const TrainView& trainView);
 	TrainView(TrainView&& trainView) noexcept;
 	~TrainView() = default;
@@ -35,6 +37,10 @@ public:
 
 	inline unsigned int getNumberOfTests() const {
 		return testsSpinBox->value();
+	}
+
+	inline QString& getPropertyName() {
+		return propertyEdit->text();
 	}
 
 	inline QString& getClassificationType() {

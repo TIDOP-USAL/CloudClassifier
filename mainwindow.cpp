@@ -421,7 +421,8 @@ void MainWindow::runTraining() {
 	// View
 	unsigned int scales = 5;
 	unsigned int tests = 800;
-	TrainView* trainView = new TrainView(this, scales, tests);
+	const std::string propertyName = "label";
+	TrainView* trainView = new TrainView(this, scales, tests, propertyName);
 	if (trainView->exec() != QDialog::Accepted)
 		return;
 	// Controller
