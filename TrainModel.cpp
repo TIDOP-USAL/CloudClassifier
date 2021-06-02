@@ -6,6 +6,7 @@
 #include <CGAL/IO/write_ply_points.h>
 
 #include "WProgressDialog.h"
+#include "BinaryCheck.h"
 
 TrainModel::TrainModel(const TrainController& _trainController)
 	: trainController(_trainController), featureGenerator(nullptr), 
@@ -41,7 +42,11 @@ TrainModel::~TrainModel() {
 void TrainModel::initInput() {
 
 	std::string path = trainController.getFilePath();
-	std::ifstream in(path, std::ios::binary);
+	std::ifstream in;
+	if (BinaryCheck::check(path))
+		in = std::ifstream(path, std::ios::binary);
+	else
+		in = std::ifstream(path);
 	in >> pts;
 	
 	std::string propertyName = trainController.getPropertyName().toLocal8Bit().constData();

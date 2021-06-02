@@ -20,6 +20,7 @@ set(SOURCES
 	src/TrainView.cpp
 	src/TrainController.cpp
 	src/TrainModel.cpp
+	src/BinaryCheck.cpp
 	PARENT_SCOPE)
 	
 set(HEADERS
@@ -46,4 +47,5 @@ set(HEADERS
 	src/TrainView.h
 	src/TrainController.h
 	src/TrainModel.h
+	src/BinaryCheck.h
 	PARENT_SCOPE)
