@@ -51,12 +51,12 @@ void TrainModel::initInput() {
 	
 	std::string propertyName = trainController.getPropertyName().toLocal8Bit().constData();
 	bool found = false;
-	std::tie(labelMap, found) = pts.property_map<float>(propertyName);
+	std::tie(labelMap, found) = pts.property_map<int>(propertyName);
 
 	if (!found) {
 		QMessageBox msgBox;
 		msgBox.setIcon(QMessageBox::Critical);
-		std::string msg = "'property float " + propertyName + "'" + " not found in input file";
+		std::string msg = "'property int " + propertyName + "'" + " not found in input file";
 		msgBox.setText(msg.c_str());
 		msgBox.exec();
 	}

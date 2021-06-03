@@ -19,7 +19,7 @@ typedef CKernel::Point_3 CPoint;
 typedef CGAL::Point_set_3<CPoint> Point_set;
 typedef Kernel::Iso_cuboid_3 Iso_cuboid_3;
 typedef Point_set::Point_map PointMap;
-typedef Point_set::Property_map<float> Imap;
+typedef Point_set::Property_map<int> Imap;
 namespace Classification = CGAL::Classification;
 
 typedef Classification::Label_handle												CLabelHandle;
