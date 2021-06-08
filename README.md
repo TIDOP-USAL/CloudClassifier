@@ -1,6 +1,5 @@
 # CloudClassifier
-
-Point cloud classification
+Point cloud classification in C++
 
 ## Dependencies
 ```
@@ -9,6 +8,8 @@ Qt5
 CloudCompare
 Boost
 ```
-## Demo
+## Specifying geometric features by hand
 ![alt text](https://github.com/TIDOP-USAL/CloudClassifier/blob/main/img/demo.PNG)
+
+## Training
 ![alt text](https://github.com/TIDOP-USAL/CloudClassifier/blob/main/img/demoTraining.PNG)
