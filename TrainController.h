@@ -30,12 +30,28 @@ public:
 		return trainView.getClassificationType();
 	}
 
-	inline unsigned int getScales() {
+	inline unsigned int getScales() const {
 		return trainView.getScales();
 	}
 
-	inline unsigned int getNumberOfTests() {
+	inline unsigned int getNumberOfTests() const {
 		return trainView.getNumberOfTests();
+	}
+
+	inline double getRadiusNeighbors() const {
+		return trainView.getRadiusNeighbors();
+	}
+
+	inline unsigned int getKNeighbors() const {
+		return trainView.getKNeighbors();
+	}
+
+	inline double getStrength() const {
+		return trainView.getStrength();
+	}
+
+	inline unsigned int getSubdivisions() const {
+		return trainView.getSubdivisions();
 	}
 
 	inline QString& getPropertyName() {

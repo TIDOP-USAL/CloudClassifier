@@ -97,17 +97,20 @@ void TrainModel::classify() {
 			(pts, labelSet, *classifier, labelIndices);
 	}
 	else if (classificationStr == QString(CLASSIFICATION_LOCAL_SMOOTHING)) {
-		float radiusNeighbors = 0.1f;
+		float radiusNeighbors = static_cast<float>(trainController.getRadiusNeighbors());
 		CGAL::Classification::classify_with_local_smoothing<CGAL::Parallel_if_available_tag>
 			(pts,pts.point_map(), labelSet,
 			*classifier, featureGenerator->neighborhood().sphere_neighbor_query
 			(radiusNeighbors), labelIndices);
 	}
 	else if (classificationStr == QString(CLASSIFICATION_GRAPHCUT)) {
+		unsigned int kNeighbors = trainController.getKNeighbors();
+		float strength = static_cast<float>(trainController.getStrength());
+		unsigned int subdivisions = trainController.getSubdivisions();
 		Classification::classify_with_graphcut<CGAL::Parallel_if_available_tag>
 			(pts, pts.point_map(), labelSet, *classifier,
-				featureGenerator->neighborhood().k_neighbor_query(12),
-				0.2f, 10, labelIndices);
+				featureGenerator->neighborhood().k_neighbor_query(kNeighbors),
+				strength, subdivisions, labelIndices);
 	}
 }
 

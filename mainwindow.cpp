@@ -421,8 +421,12 @@ void MainWindow::runTraining() {
 	// View
 	unsigned int scales = 5;
 	unsigned int tests = 800;
+	double radiusNeighbors = 0.1;
+	unsigned int kNeighbors = 12;
+	double strength = 0.2;
+	unsigned int subdivisions = 10;
 	const std::string propertyName = "label";
-	TrainView* trainView = new TrainView(this, scales, tests, propertyName);
+	TrainView* trainView = new TrainView(this, scales, tests, radiusNeighbors, kNeighbors, strength, subdivisions, propertyName);
 	if (trainView->exec() != QDialog::Accepted)
 		return;
 	// Controller
