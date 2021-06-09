@@ -25,7 +25,7 @@ public:
 	Classifier() = default;
 	~Classifier() = default;
 public:
-	void classify(const ClassificationType& classificationType);
+	void classify(const ClassificationType& classificationType, unsigned int kNeighbors, double strength, unsigned int subdivisions);
 	void save(const std::string& filePath);
 	void save();
 public:

@@ -11,8 +11,11 @@ private:
 public:
 	FeatureController(const std::vector<FeatureView*>& _views);
 	FeatureController(const FeatureController& featureController);
+	FeatureController(FeatureController&& featureController) noexcept;
 	FeatureController() = default;
 	~FeatureController() = default;
+public:
+	FeatureController& operator=(const FeatureController& featureController);
 public:
 	inline std::vector<FeatureView*>& getViews() {
 		return views;

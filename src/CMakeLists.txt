@@ -48,4 +48,5 @@ set(HEADERS
 	src/TrainController.h
 	src/TrainModel.h
 	src/BinaryCheck.h
+	src/ControllerGroup.h
 	PARENT_SCOPE)

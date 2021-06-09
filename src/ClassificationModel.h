@@ -4,23 +4,18 @@
 #include <string>
 #include <map>
 
-#include "LabelController.h"
-#include "FeatureController.h"
-#include "EffectController.h"
-
 #include "Input.h"
 #include "Analysis.h"
 #include "FeatureManager.h"
 #include "Classifier.h"
 
+#include "ControllerGroup.h"
+
 #include <QProgressDialog>
 
 class ClassificationModel {
 private:
-	LabelController labelController;
-	FeatureController featureController;
-	EffectController effectController;
-
+	ControllerGroup controllerGroup;
 	std::string filePath;
 	Input* input;
 	Analysis* analysis;
@@ -28,8 +23,7 @@ private:
 	std::map<FeatureHandle, float> weightMap;
 	Classifier* classifier;
 public:
-	ClassificationModel(const std::string& _filePath, const LabelController& _labelController, 
-		const FeatureController& _featureController, const EffectController& _effectController);
+	ClassificationModel(const std::string& _filePath, const ControllerGroup& controllerGroup);
 	ClassificationModel() = default;
 	~ClassificationModel();
 private:
@@ -40,7 +34,7 @@ private:
 	void applyWeights();
 	void applyEffects();
 public:
-	void run(float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, const ClassificationType& classificationType);
+	void run();
 public:
 	inline Input* getInput() {
 		return input;
@@ -58,15 +52,19 @@ public:
 		return classifier;
 	}
 
+	inline ControllerGroup& getControllerGroup() {
+		return controllerGroup;
+	}
+
 	inline LabelController& getLabelController() {
-		return labelController;
+		return controllerGroup.labelController;
 	}
 
 	inline FeatureController& getFeatureController() {
-		return featureController;
+		return controllerGroup.featureController;
 	}
 
 	inline EffectController& getEffectController() {
-		return effectController;
+		return controllerGroup.effectController;
 	}
 };

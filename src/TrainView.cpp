@@ -26,7 +26,7 @@ TrainView::TrainView(QWidget* parent, unsigned int scales, unsigned int tests, d
 	labelScales->setText("Number of scales");
 	labelTests->setText("Number of tests");
 	labelClassification->setText("Classification");
-	labelProperty->setText("Property (float)");
+	labelProperty->setText("Property");
 	labelRadiusNeighbors->setText("Radius Neighbors");
 	labelKNeighbors->setText("K-Neighbors");
 	labelStrength->setText("Strength");
@@ -124,7 +124,6 @@ TrainView::TrainView(const TrainView& trainView)
 	subdivisionsSpinBox(trainView.subdivisionsSpinBox), strengthSpinBox(trainView.strengthSpinBox), layout(trainView.layout) {
 }
 
-
 TrainView::TrainView(TrainView&& trainView) noexcept
 	: scalesSpinBox(std::move(trainView.scalesSpinBox)), testsSpinBox(std::move(trainView.testsSpinBox)),
 	propertyEdit(std::move(trainView.propertyEdit)), comboClassification(std::move(trainView.comboClassification)),
@@ -145,7 +144,7 @@ void TrainView::enableGraphcut(bool enable) {
 }
 
 void TrainView::addSeparator(int row, int col) {
-	QFrame* line = new QFrame();
+	QFrame* line = new QFrame(this);
 	line->setFrameShape(QFrame::HLine);
 	line->setFrameShadow(QFrame::Sunken);
 	layout->addWidget(line, row, col, 1, 2);

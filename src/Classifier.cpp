@@ -7,7 +7,7 @@ Classifier::Classifier(FeatureManager& _featureManager)
 	labelIndices = std::vector<int>(getInput().getPoints().size(), -1);
 }
 
-void Classifier::classify(const ClassificationType& classificationType) {
+void Classifier::classify(const ClassificationType& classificationType, unsigned int kNeighbors, double strength, unsigned int subdivisions) {
 
 	CGALclassifier classifier(getLabelManager().getLabelSet(), featureManager.getFeatureSet());
 
@@ -16,7 +16,7 @@ void Classifier::classify(const ClassificationType& classificationType) {
 
 	for (EffectGroup& e : effects)
 		classifier.set_effect(e.label, e.feature, e.effect);
-		
+
 	switch (classificationType) {
 	case ClassificationType::RAW:
 		CGAL::Classification::classify<CGAL::Parallel_if_available_tag>(getInput().getPoints(), getLabelManager().getLabelSet(), classifier, labelIndices);
@@ -27,7 +27,7 @@ void Classifier::classify(const ClassificationType& classificationType) {
 		break;
 	case ClassificationType::GRAPHCUT:
 		CGAL::Classification::classify_with_graphcut<CGAL::Parallel_if_available_tag>(getInput().getPoints(), Pmap(), getLabelManager().getLabelSet(), classifier,
-			getAnalysis().getNeighborhood().k_neighbor_query(12), 0.2f, 4, labelIndices);
+			getAnalysis().getNeighborhood().k_neighbor_query(kNeighbors), strength, subdivisions, labelIndices);
 		break;
 	}
 }

@@ -18,6 +18,10 @@ private:
 	QDoubleSpinBox* spinNumberOfNeighbors;
 	QDoubleSpinBox* spinRadiusNeighbors;
 	QDoubleSpinBox* spinRadiusDtm;
+	QDoubleSpinBox* strengthSpinBox;
+
+	QSpinBox* kNeighborsSpinBox;
+	QSpinBox* subdivisionsSpinBox;
 
 	QComboBox* comboClassification;
 
@@ -25,8 +29,13 @@ private:
 	QPushButton* buttonCancel;
 public:
 	RunPopup(QWidget* parent = nullptr);
-	RunPopup(QWidget* parent, float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm);
+	RunPopup(QWidget* parent, float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, unsigned int kNeighbors, double strength, unsigned int subdivisions);
+	RunPopup(const RunPopup& runPopup);
+	RunPopup(RunPopup&& runPopup) noexcept;
 	~RunPopup() = default;
+private:
+	void enableGraphcut(bool enable);
+	void addSeparator(int row, int col);
 private slots:
 	void ok();
 	void cancel();
@@ -45,6 +54,18 @@ public:
 
 	inline float getRadiusDtm() const {
 		return spinRadiusDtm->value();
+	}
+
+	inline unsigned int getKNeighbors() const {
+		return kNeighborsSpinBox->value();
+	}
+
+	inline double getStrength() const {
+		return strengthSpinBox->value();
+	}
+
+	inline unsigned int getSubdivisions() const {
+		return subdivisionsSpinBox->value();
 	}
 
 	inline QString& getClassificationType() {

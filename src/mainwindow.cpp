@@ -27,6 +27,8 @@
 #include "TrainController.h"
 #include "TrainModel.h"
 
+#include "ControllerGroup.h"
+
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -36,6 +38,18 @@
 #include <CGAL/Point_set_3.h>
 #include <CGAL/Point_set_3/IO.h>
 #include <CGAL/Real_timer.h>
+
+#define GRID_RESOLUTION 0.1
+#define NUMBER_OF_NEIGHBORS 200
+#define RADIUS_NEIGHBORS 0.1
+#define RADIUS_DTM 5.0
+#define K_NEIGHBORS 12
+#define STRENGTH 0.2
+#define SUBDIVISIONS 10
+
+#define SCALES 5
+#define TESTS 800
+#define PROPERTY_NAME "label"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), 
@@ -375,34 +389,22 @@ void MainWindow::addEffects() {
 }
 
 void MainWindow::runModel() {
-	// Classification variables
-	float gridResolution = 0.1f;
-	unsigned int numberOfNeighbors = 200;
-	float radiusNeighbors = 0.1f;
-	float radiusDtm = 5.0f;
 	ClassificationType classificationType = ClassificationType::NONE;
 	// Run popup
-	RunPopup* runPopup = new RunPopup(this, gridResolution, numberOfNeighbors, radiusNeighbors, radiusDtm);
+	RunPopup* runPopup = new RunPopup(this, GRID_RESOLUTION, NUMBER_OF_NEIGHBORS, RADIUS_NEIGHBORS, RADIUS_DTM, K_NEIGHBORS, STRENGTH, SUBDIVISIONS);
 	if (runPopup->exec() != QDialog::Accepted)
 		return;
-	// Get new variables
-	gridResolution = runPopup->getGridResolution();
-	numberOfNeighbors = runPopup->getNumberOfNeighbors();
-	radiusNeighbors = runPopup->getRadiusNeighbors();
-	radiusDtm = runPopup->getRadiusDtm();
-	QString classificationStr = runPopup->getClassificationType();
-	if (classificationStr == QString(CLASSIFICATION_RAW))						classificationType = ClassificationType::RAW;
-	else if (classificationStr == QString(CLASSIFICATION_LOCAL_SMOOTHING))		classificationType = ClassificationType::LOCAL_SMOOTHING;
-	else if (classificationStr == QString(CLASSIFICATION_GRAPHCUT))				classificationType = ClassificationType::GRAPHCUT;
-	else																		classificationType = ClassificationType::NONE;
 	// Controllers
-	LabelController labelController(getLabelViews());
-	FeatureController featureController(getFeatureViews());
-	EffectController effectController(getEffectViews());
+	ControllerGroup controllerGroup(
+		LabelController(getLabelViews()), 
+		FeatureController(getFeatureViews()), 
+		EffectController(getEffectViews()), 
+		runPopup
+	);
 	// Model
 	std::string path = filePath.toLocal8Bit().constData();
-	ClassificationModel classificationModel(path, labelController, featureController, effectController);
-	classificationModel.run(gridResolution, numberOfNeighbors, radiusNeighbors, radiusDtm, classificationType);
+	ClassificationModel classificationModel(path, controllerGroup);
+	classificationModel.run();
 }
 
 void MainWindow::runTraining() {
@@ -419,14 +421,8 @@ void MainWindow::runTraining() {
 		return;
 	}
 	// View
-	unsigned int scales = 5;
-	unsigned int tests = 800;
-	double radiusNeighbors = 0.1;
-	unsigned int kNeighbors = 12;
-	double strength = 0.2;
-	unsigned int subdivisions = 10;
-	const std::string propertyName = "label";
-	TrainView* trainView = new TrainView(this, scales, tests, radiusNeighbors, kNeighbors, strength, subdivisions, propertyName);
+	const std::string propertyName = std::string(PROPERTY_NAME);
+	TrainView* trainView = new TrainView(this, SCALES, TESTS, RADIUS_NEIGHBORS, K_NEIGHBORS, STRENGTH, SUBDIVISIONS, propertyName);
 	if (trainView->exec() != QDialog::Accepted)
 		return;
 	// Controller

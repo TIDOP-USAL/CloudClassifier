@@ -2,9 +2,9 @@
 
 #include "WProgressDialog.h"
 
-ClassificationModel::ClassificationModel(const std::string& _filePath, const LabelController& _labelController, const FeatureController& _featureController, const EffectController& _effectController)
-	: filePath(_filePath), labelController(_labelController), featureController(_featureController), effectController(_effectController), 
-	input(nullptr), analysis(nullptr), featureManager(nullptr), classifier(nullptr) {
+ClassificationModel::ClassificationModel(const std::string& _filePath, const ControllerGroup& _controllerGroup)
+	: filePath(_filePath), controllerGroup(_controllerGroup), input(nullptr), analysis(nullptr), featureManager(nullptr), 
+	classifier(nullptr)  {
 }
 
 ClassificationModel::~ClassificationModel() {
@@ -16,7 +16,7 @@ ClassificationModel::~ClassificationModel() {
 
 void ClassificationModel::initInput(const std::string& filePath) {
 	input = new Input(filePath);
-	for (LabelView* labelView : labelController.getViews()) {
+	for (LabelView* labelView : controllerGroup.labelController.getViews()) {
 		QString text = labelView->getText();
 		QColor color = labelView->getColor();
 		input->getLabelManager().createLabel(text.toLocal8Bit().constData(), CGAL::Color(color.red(), color.green(), color.blue()));
@@ -29,7 +29,7 @@ void ClassificationModel::initAnalysis(float gridResolution, unsigned int number
 
 void ClassificationModel::initFeatureManager(float radiusNeighbors, float radiusDtm) {
 	featureManager = new FeatureManager(*analysis, radiusNeighbors, radiusDtm);
-	for (FeatureView* featureView : featureController.getViews()) {
+	for (FeatureView* featureView : controllerGroup.featureController.getViews()) {
 		// Get handle
 		QString qFeatureName = featureView->getFeatureName();
 		std::string featureName = qFeatureName.toLocal8Bit().constData();
@@ -49,7 +49,7 @@ void ClassificationModel::applyWeights() {
 }
 
 void ClassificationModel::applyEffects() {
-	for (EffectView* effectView : effectController.getViews()) {
+	for (EffectView* effectView : controllerGroup.effectController.getViews()) {
 		// Get handles
 		LabelHandle labelHandle = input->getLabelManager().getLabel(effectView->getSelectedLabelName().toLocal8Bit().constData()).handle;
 		FeatureHandle featureHandle = featureManager->getFeatureHandle(effectView->getSelectedFeatureName().toLocal8Bit().constData());
@@ -63,18 +63,26 @@ void ClassificationModel::applyEffects() {
 	}
 }
 
-void ClassificationModel::run(float gridResolution, unsigned int numberOfNeighbors, float radiusNeighbors, float radiusDtm, const ClassificationType& classificationType) {
+void ClassificationModel::run() {
 
 	unsigned int progress = 0, maxProgress = 8;
 	WProgressDialog progressDialog("Classifying", "Label", 0, maxProgress);
 	#define PROGRESS(S, F, ...) progressDialog.setLabel(std::string(S)); F(__VA_ARGS__); progressDialog.setValue(++progress)
 
 	PROGRESS("Loading input...", initInput, filePath);
-	PROGRESS("Loading analysis...", initAnalysis, gridResolution, numberOfNeighbors);
-	PROGRESS("Loading features...", initFeatureManager, radiusNeighbors, radiusDtm);
+	PROGRESS("Loading analysis...", initAnalysis, controllerGroup.getGridResolution(), controllerGroup.getNumberOfNeighbors());
+	PROGRESS("Loading features...", initFeatureManager, controllerGroup.getRadiusNeighbors(), controllerGroup.getRadiusDtm());
 	PROGRESS("Loading classifier", initClassifier);
 	PROGRESS("Applying weights...", applyWeights);
 	PROGRESS("Apply effects...", applyEffects);
-	PROGRESS("Classifying...", classifier->classify, classificationType);
+
+	ClassificationType classificationType;
+	QString classificationStr = controllerGroup.getClassificationType();
+	if (classificationStr == QString(CLASSIFICATION_RAW))						classificationType = ClassificationType::RAW;
+	else if (classificationStr == QString(CLASSIFICATION_LOCAL_SMOOTHING))		classificationType = ClassificationType::LOCAL_SMOOTHING;
+	else if (classificationStr == QString(CLASSIFICATION_GRAPHCUT))				classificationType = ClassificationType::GRAPHCUT;
+	else																		classificationType = ClassificationType::NONE;
+	PROGRESS("Classifying...", classifier->classify, classificationType, controllerGroup.getKNeighbors(), controllerGroup.getStrength(), controllerGroup.getSubdivisions());
+
 	PROGRESS("Saving...", classifier->save);
 }
