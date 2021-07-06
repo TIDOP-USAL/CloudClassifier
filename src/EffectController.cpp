@@ -14,4 +14,5 @@ EffectController::EffectController(EffectController&& effectController) noexcept
 
 EffectController& EffectController::operator=(const EffectController& effectController) {
 	views = effectController.views;
+	return *this;
 }

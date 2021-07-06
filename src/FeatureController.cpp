@@ -14,4 +14,5 @@ FeatureController::FeatureController(FeatureController&& featureController) noex
 
 FeatureController& FeatureController::operator=(const FeatureController& featureController) {
 	views = featureController.views;
+	return *this;
 }

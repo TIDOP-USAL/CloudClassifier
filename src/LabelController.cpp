@@ -14,4 +14,5 @@ LabelController::LabelController(LabelController&& labelController) noexcept
 
 LabelController& LabelController::operator=(const LabelController& labelController) {
 	views = labelController.views;
+	return *this;
 }
