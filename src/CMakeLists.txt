@@ -21,6 +21,7 @@ set(SOURCES
 	src/TrainController.cpp
 	src/TrainModel.cpp
 	src/BinaryCheck.cpp
+	src/Console.cpp
 	PARENT_SCOPE)
 	
 set(HEADERS
@@ -49,4 +50,5 @@ set(HEADERS
 	src/TrainModel.h
 	src/BinaryCheck.h
 	src/ControllerGroup.h
+	src/Console.h
 	PARENT_SCOPE)

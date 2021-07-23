@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/ico">
+        <file>icons/icons8-back-view.png</file>
+        <file>icons/icons8-bottom-view.png</file>
+        <file>icons/icons8-cube.png</file>
+        <file>icons/icons8-front-view.png</file>
+        <file>icons/icons8-magnifying-glass-with-expand-sign.png</file>
+        <file>icons/icons8-top-view.png</file>
+        <file>icons/icons8-view_right.png</file>
+        <file>icons/icons8-open.png</file>
+        <file>icons/icons8-save-as.png</file>
+        <file>icons/tag.png</file>
+        <file>icons/feature.png</file>
+        <file>icons/effect.png</file>
+        <file>icons/play.png</file>
+        <file>icons/delete.png</file>
+        <file>icons/train.png</file>
+    </qresource>
+</RCC>

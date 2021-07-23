@@ -65,10 +65,13 @@ MainWindow::MainWindow(QWidget *parent)
 	actionAddEffect(new QAction(this)),
 	actionTrain(new QAction(this)),
 	actionDelete(new QAction(this)),
-	actionRun(new QAction(this)) {
+	actionRun(new QAction(this)),
+	console(Console(this)) {
 	
 	initComponents();
 	initSignalsAndSlots();
+	console.warn("Cloud classifier version 1.0 beta");
+	console.success("Cloud classifier initialized successfuly");
 }
 
 MainWindow::~MainWindow() { }
@@ -229,7 +232,8 @@ void MainWindow::initDocks() {
 	listWidgetEffects->setResizeMode(QListWidget::Adjust);
 	listWidgetEffects->setSelectionMode(QAbstractItemView::NoSelection);
 	ui->dockEffects->setWidget(listWidgetEffects);
-
+	// Dock output
+	ui->dockOutput->setWidget(console.getWidget());
 }
 
 std::vector<LabelView*> MainWindow::getLabelViews() {
@@ -324,7 +328,9 @@ void MainWindow::addLabel() {
 	// Remove label
 	connect(labelView, &LabelView::deleteSignal, [&](unsigned int id) {
 		deleteItem<LabelView>(listWidgetLabels, id);
+		console.log("Label deleted");
 	});
+	console.log("Label added");
 	index++;
 }
 
@@ -338,7 +344,9 @@ void MainWindow::addFeature() {
 	// Remove Feature
 	connect(featureView, &FeatureView::deleteSignal, [&](unsigned int id) {
 		deleteItem<FeatureView>(listWidgetFeatures, id);
+		console.log("Feature deleted");
 	});
+	console.log("Feature added");
 	index++;
 }
 
@@ -347,6 +355,7 @@ void MainWindow::deleteViews() {
 		delete item;
 	for (QListWidgetItem* item : listWidgetFeatures->selectedItems())
 		delete item;
+	console.warn("Views deleted");
 }
 
 void MainWindow::addEffects() {
@@ -386,6 +395,7 @@ void MainWindow::addEffects() {
 		}
 		colorIndex++;
 	}
+	console.log("Effects added");
 }
 
 void MainWindow::runModel() {
@@ -402,9 +412,11 @@ void MainWindow::runModel() {
 		runPopup
 	);
 	// Model
+	console.warn("Running classifier");
 	std::string path = filePath.toLocal8Bit().constData();
 	ClassificationModel classificationModel(path, controllerGroup);
 	classificationModel.run();
+	console.success("Classification finished successfuly");
 }
 
 void MainWindow::runTraining() {
@@ -427,8 +439,10 @@ void MainWindow::runTraining() {
 		return;
 	// Controller
 	std::string path = filePath.toLocal8Bit().constData();
+	console.warn("Running training mode");
 	TrainController trainController(path, labelViews, *trainView);
 	// Model
 	TrainModel trainModel(trainController);
 	trainModel.run();
+	console.success("Training finished successfuly");
 }

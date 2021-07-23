@@ -13,6 +13,8 @@
 #include "FeatureView.h"
 #include "EffectView.h"
 
+#include "Console.h"
+
 class CCViewer3D;
 class QAction;
 class QToolBar;
@@ -50,6 +52,7 @@ private:
 	QListWidget* listWidgetLabels;
 	QListWidget* listWidgetFeatures;
 	QListWidget* listWidgetEffects;
+	Console console;
 
 	std::vector<std::string> comboLabelsVec;
 	std::vector<std::string> comboFeaturesVec;
