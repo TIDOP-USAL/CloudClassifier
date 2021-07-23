@@ -41,6 +41,7 @@ private:
 	QAction* actionAddFeature;
 	QAction* actionAddEffect;
 	QAction* actionTrain;
+	QAction* actionDeepLearning;
 	QToolBar* classifierToolBar;
 
 	QAction* actionDelete;
@@ -83,6 +84,7 @@ private slots:
 	void addEffects();
 	void runModel();
 	void runTraining();
+	void runDeepLearningProcess();
 public:
 	explicit MainWindow(QWidget *parent = nullptr);
 	~MainWindow();

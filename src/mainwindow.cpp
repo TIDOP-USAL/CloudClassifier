@@ -29,6 +29,8 @@
 
 #include "ControllerGroup.h"
 
+#include "LightProcess.h"
+
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -64,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
 	actionAddFeature(new QAction(this)),
 	actionAddEffect(new QAction(this)),
 	actionTrain(new QAction(this)),
+	actionDeepLearning(new QAction(this)),
 	actionDelete(new QAction(this)),
 	actionRun(new QAction(this)),
 	console(Console(this)) {
@@ -145,7 +148,7 @@ void MainWindow::initComponents() {
 	mToolBar3dModel->addAction(mActionViewBottom);
 	mToolBar3dModel->addAction(mActionViewLeft);
 	mToolBar3dModel->addAction(mActionViewRight);
-	this->addToolBar(Qt::RightToolBarArea, mToolBar3dModel);
+	this->addToolBar(Qt::TopToolBarArea, mToolBar3dModel);
 
 	// Classifier tool bar
 	classifierToolBar = new QToolBar(this);
@@ -168,11 +171,16 @@ void MainWindow::initComponents() {
 	iconTrain.addFile(QStringLiteral(":/ico/icons/train.png"), QSize(), QIcon::Normal, QIcon::Off);
 	actionTrain->setIcon(iconTrain);
 
+	QIcon iconDL;
+	iconDL.addFile(QStringLiteral(":/ico/icons/deepLearning.png"), QSize(), QIcon::Normal, QIcon::Off);
+	actionDeepLearning->setIcon(iconDL);
+
 	classifierToolBar->addAction(actionAddLabel);
 	classifierToolBar->addAction(actionAddFeature);
 	classifierToolBar->addAction(actionAddEffect);
 	classifierToolBar->addSeparator();
 	classifierToolBar->addAction(actionTrain);
+	classifierToolBar->addAction(actionDeepLearning);
 	addToolBar(Qt::LeftToolBarArea, classifierToolBar);
 
 	// Run tool bar
@@ -212,6 +220,8 @@ void MainWindow::initSignalsAndSlots() {
 	connect(actionAddFeature, SIGNAL(triggered(bool)), this, SLOT(addFeature()));
 	connect(actionAddEffect, SIGNAL(triggered(bool)), this, SLOT(addEffects()));
 	connect(actionTrain, SIGNAL(triggered(bool)), this, SLOT(runTraining()));
+	connect(actionDeepLearning, SIGNAL(triggered(bool)), this, SLOT(runDeepLearningProcess()));
+
 	connect(actionDelete, SIGNAL(triggered(bool)), this, SLOT(deleteViews()));
 	connect(actionRun, SIGNAL(triggered(bool)), this, SLOT(runModel()));
 }
@@ -445,4 +455,15 @@ void MainWindow::runTraining() {
 	TrainModel trainModel(trainController);
 	trainModel.run();
 	console.success("Training finished successfuly");
+}
+
+void MainWindow::runDeepLearningProcess() {
+	// Start view
+
+	// Run process with args
+	auto wrapper = [&](const std::string& output) {
+		console.log(output);
+	};
+
+	LightProcess process("code", LightProcess::Mode::READ, wrapper);
 }

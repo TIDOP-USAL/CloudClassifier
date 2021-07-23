@@ -22,6 +22,7 @@ set(SOURCES
 	src/TrainModel.cpp
 	src/BinaryCheck.cpp
 	src/Console.cpp
+	src/LightProcess.cpp
 	PARENT_SCOPE)
 	
 set(HEADERS
@@ -51,4 +52,5 @@ set(HEADERS
 	src/BinaryCheck.h
 	src/ControllerGroup.h
 	src/Console.h
+	src/LightProcess.h
 	PARENT_SCOPE)
