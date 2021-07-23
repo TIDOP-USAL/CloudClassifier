@@ -15,3 +15,4 @@ Create labels, add features and bind them by hand
 ## Training
 Create the corresponding labels to the point cloud colors. The features will be calculated and binded automatically
 ![alt text](https://github.com/TIDOP-USAL/CloudClassifier/blob/main/img/demoTraining.PNG)
+![alt text](https://github.com/TIDOP-USAL/CloudClassifier/blob/main/img/trainingOutput.png)
