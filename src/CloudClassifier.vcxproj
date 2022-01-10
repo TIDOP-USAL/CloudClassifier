@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{64B25F39-3ADF-3A5F-8014-3699EEE4FDF4}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>CloudClassifier</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\AppClassification\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CloudClassifier.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CloudClassifier</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\AppClassification\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CloudClassifier.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CloudClassifier</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\AppClassification\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CloudClassifier.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CloudClassifier</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\AppClassification\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CloudClassifier.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CloudClassifier</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_Debug;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4503</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <FloatingPointModel>Strict</FloatingPointModel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_Debug;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_Debug;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message>Automatic MOC and UIC for target CloudClassifier</Message>
+      <Command>setlocal
+cd E:\AppClassification\build
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen E:/AppClassification/build/CMakeFiles/CloudClassifier_autogen.dir/AutogenInfo.json Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGLd.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGLExtensionsd.lib;..\CloudCompare\2.10.2\vc16\lib\CC_CORE_LIBd.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_DB_LIBd.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_GL_LIBd.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_IO_LIBd.lib;..\CloudCompare\2.10.2\vc16\lib\CC_FBO_LIBd.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Widgetsd.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Guid.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Cored.lib;C:\Qt\5.15.2\msvc2019_64\lib\qtmaind.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Guid.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Cored.lib;E:\libs\gmp\lib\libmpfr-4.lib;E:\libs\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/AppClassification/build/Debug/CloudClassifier.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/AppClassification/build/Debug/CloudClassifier.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_Release;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4503</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <FloatingPointModel>Strict</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_Release;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_Release;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message>Automatic MOC and UIC for target CloudClassifier</Message>
+      <Command>setlocal
+cd E:\AppClassification\build
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen E:/AppClassification/build/CMakeFiles/CloudClassifier_autogen.dir/AutogenInfo.json Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGL.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGLExtensions.lib;..\CloudCompare\2.10.2\vc16\lib\CC_CORE_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_DB_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_GL_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_IO_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\CC_FBO_LIB.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Widgets.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Gui.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Core.lib;C:\Qt\5.15.2\msvc2019_64\lib\qtmain.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Gui.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Core.lib;E:\libs\gmp\lib\libmpfr-4.lib;E:\libs\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/AppClassification/build/Release/CloudClassifier.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/AppClassification/build/Release/CloudClassifier.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_MinSizeRel;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4503</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <FloatingPointModel>Strict</FloatingPointModel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_MinSizeRel;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_MinSizeRel;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message>Automatic MOC and UIC for target CloudClassifier</Message>
+      <Command>setlocal
+cd E:\AppClassification\build
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen E:/AppClassification/build/CMakeFiles/CloudClassifier_autogen.dir/AutogenInfo.json MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGL.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGLExtensions.lib;..\CloudCompare\2.10.2\vc16\lib\CC_CORE_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_DB_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_GL_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_IO_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\CC_FBO_LIB.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Widgets.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Gui.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Core.lib;C:\Qt\5.15.2\msvc2019_64\lib\qtmain.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Gui.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Core.lib;E:\libs\gmp\lib\libmpfr-4.lib;E:\libs\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/AppClassification/build/MinSizeRel/CloudClassifier.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/AppClassification/build/MinSizeRel/CloudClassifier.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_RelWithDebInfo;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4503</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <FloatingPointModel>Strict</FloatingPointModel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CC_VIEWER;CC_USE_AS_DLL;QCC_DB_USE_AS_DLL;QCC_IO_USE_AS_DLL;QT_CORE_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_OPENGLEXTENSIONS_LIB;BOOST_ALL_DYN_LINK=1;BOOST_ALL_NO_LIB;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_RelWithDebInfo;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\AppClassification\build;E:\AppClassification;E:\AppClassification\build\CloudClassifier_autogen\include_RelWithDebInfo;E:\AppClassification\CloudCompare\2.10.2\vc16\include;E:\AppClassification\src;C:\Qt\5.15.2\msvc2019_64\include;C:\Qt\5.15.2\msvc2019_64\include\QtCore;C:\Qt\5.15.2\msvc2019_64\.\mkspecs\win32-msvc;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGL;C:\Qt\5.15.2\msvc2019_64\include\QtWidgets;C:\Qt\5.15.2\msvc2019_64\include\QtGui;C:\Qt\5.15.2\msvc2019_64\include\QtANGLE;C:\Qt\5.15.2\msvc2019_64\include\QtOpenGLExtensions;E:\libs\boost_1_74_0;E:\libs\CGAL\include;E:\libs\gmp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message>Automatic MOC and UIC for target CloudClassifier</Message>
+      <Command>setlocal
+cd E:\AppClassification\build
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen E:/AppClassification/build/CMakeFiles/CloudClassifier_autogen.dir/AutogenInfo.json RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGL.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5OpenGLExtensions.lib;..\CloudCompare\2.10.2\vc16\lib\CC_CORE_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_DB_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_GL_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\QCC_IO_LIB.lib;..\CloudCompare\2.10.2\vc16\lib\CC_FBO_LIB.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Widgets.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Gui.lib;C:\Qt\5.15.2\msvc2019_64\lib\Qt5Core.lib;C:\Qt\5.15.2\msvc2019_64\lib\qtmain.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Gui.lib;C:\Qt\5.15.2\msvc2019_64\lib\\Qt5Core.lib;E:\libs\gmp\lib\libmpfr-4.lib;E:\libs\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/AppClassification/build/RelWithDebInfo/CloudClassifier.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/AppClassification/build/RelWithDebInfo/CloudClassifier.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\AppClassification\res\resources.qrc">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating qrc_resources.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name resources --output E:/AppClassification/build/qrc_resources.cpp E:/AppClassification/res/resources.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\AppClassification\res\icons\icons8-back-view.png;E:\AppClassification\res\icons\icons8-bottom-view.png;E:\AppClassification\res\icons\icons8-cube.png;E:\AppClassification\res\icons\icons8-front-view.png;E:\AppClassification\res\icons\icons8-magnifying-glass-with-expand-sign.png;E:\AppClassification\res\icons\icons8-top-view.png;E:\AppClassification\res\icons\icons8-view_right.png;E:\AppClassification\res\icons\icons8-open.png;E:\AppClassification\res\icons\icons8-save-as.png;E:\AppClassification\res\icons\tag.png;E:\AppClassification\res\icons\feature.png;E:\AppClassification\res\icons\effect.png;E:\AppClassification\res\icons\play.png;E:\AppClassification\res\icons\delete.png;E:\AppClassification\res\icons\train.png;E:\AppClassification\build\res\resources.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\AppClassification\build\qrc_resources.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating qrc_resources.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name resources --output E:/AppClassification/build/qrc_resources.cpp E:/AppClassification/res/resources.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\AppClassification\res\icons\icons8-back-view.png;E:\AppClassification\res\icons\icons8-bottom-view.png;E:\AppClassification\res\icons\icons8-cube.png;E:\AppClassification\res\icons\icons8-front-view.png;E:\AppClassification\res\icons\icons8-magnifying-glass-with-expand-sign.png;E:\AppClassification\res\icons\icons8-top-view.png;E:\AppClassification\res\icons\icons8-view_right.png;E:\AppClassification\res\icons\icons8-open.png;E:\AppClassification\res\icons\icons8-save-as.png;E:\AppClassification\res\icons\tag.png;E:\AppClassification\res\icons\feature.png;E:\AppClassification\res\icons\effect.png;E:\AppClassification\res\icons\play.png;E:\AppClassification\res\icons\delete.png;E:\AppClassification\res\icons\train.png;E:\AppClassification\build\res\resources.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\AppClassification\build\qrc_resources.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating qrc_resources.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name resources --output E:/AppClassification/build/qrc_resources.cpp E:/AppClassification/res/resources.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\AppClassification\res\icons\icons8-back-view.png;E:\AppClassification\res\icons\icons8-bottom-view.png;E:\AppClassification\res\icons\icons8-cube.png;E:\AppClassification\res\icons\icons8-front-view.png;E:\AppClassification\res\icons\icons8-magnifying-glass-with-expand-sign.png;E:\AppClassification\res\icons\icons8-top-view.png;E:\AppClassification\res\icons\icons8-view_right.png;E:\AppClassification\res\icons\icons8-open.png;E:\AppClassification\res\icons\icons8-save-as.png;E:\AppClassification\res\icons\tag.png;E:\AppClassification\res\icons\feature.png;E:\AppClassification\res\icons\effect.png;E:\AppClassification\res\icons\play.png;E:\AppClassification\res\icons\delete.png;E:\AppClassification\res\icons\train.png;E:\AppClassification\build\res\resources.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\AppClassification\build\qrc_resources.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating qrc_resources.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name resources --output E:/AppClassification/build/qrc_resources.cpp E:/AppClassification/res/resources.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\AppClassification\res\icons\icons8-back-view.png;E:\AppClassification\res\icons\icons8-bottom-view.png;E:\AppClassification\res\icons\icons8-cube.png;E:\AppClassification\res\icons\icons8-front-view.png;E:\AppClassification\res\icons\icons8-magnifying-glass-with-expand-sign.png;E:\AppClassification\res\icons\icons8-top-view.png;E:\AppClassification\res\icons\icons8-view_right.png;E:\AppClassification\res\icons\icons8-open.png;E:\AppClassification\res\icons\icons8-save-as.png;E:\AppClassification\res\icons\tag.png;E:\AppClassification\res\icons\feature.png;E:\AppClassification\res\icons\effect.png;E:\AppClassification\res\icons\play.png;E:\AppClassification\res\icons\delete.png;E:\AppClassification\res\icons\train.png;E:\AppClassification\build\res\resources.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\AppClassification\build\qrc_resources.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\AppClassification\res\icones.qrc">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating qrc_icones.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name icones --output E:/AppClassification/build/qrc_icones.cpp E:/AppClassification/res/icones.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\AppClassification\res\images\donate.png;E:\AppClassification\res\images\ccPickCenterAuto.png;E:\AppClassification\res\images\theme\snowman.png;E:\AppClassification\res\images\QTreeView\branch-closed.png;E:\AppClassification\res\images\QTreeView\branch-end.png;E:\AppClassification\res\images\QTreeView\branch-more.png;E:\AppClassification\res\images\QTreeView\branch-open.png;E:\AppClassification\res\images\QTreeView\vline.png;E:\AppClassification\res\images\gamepad.png;E:\AppClassification\res\images\restore.png;E:\AppClassification\res\images\square.png;E:\AppClassification\res\images\interactors.png;E:\AppClassification\res\images\oculus.png;E:\AppClassification\res\images\nvidia.png;E:\AppClassification\res\images\ccSwapUpDown.png;E:\AppClassification\res\images\unfoldSmall.png;E:\AppClassification\res\images\ccStereo.png;E:\AppClassification\res\images\ccSORFilter.png;E:\AppClassification\res\images\smallCSVFile.png;E:\AppClassification\res\images\smallSphere.png;E:\AppClassification\res\images\ccLevel.png;E:\AppClassification\res\images\ccGrid.png;E:\AppClassification\res\images\sectionExtraction.png;E:\AppClassification\res\images\orthoSections.png;E:\AppClassification\res\images\ccExit.png;E:\AppClassification\res\images\ccFullScreen.png;E:\AppClassification\res\images\ccSunLight.png;E:\AppClassification\res\images\ccClippingBox.png;E:\AppClassification\res\images\ccClippingBoxMultExport.png;E:\AppClassification\res\images\ccClippingBoxSingleExport.png;E:\AppClassification\res\images\ccGear.png;E:\AppClassification\res\images\ccCenteredPerspective32.png;E:\AppClassification\res\images\ccOrthoMode32.png;E:\AppClassification\res\images\ccViewerBasedPerspective32.png;E:\AppClassification\res\images\dbAreaLabelSymbol.png;E:\AppClassification\res\images\dbViewportSymbol.png;E:\AppClassification\res\images\dbHObjectSymbol.png;E:\AppClassification\res\images\dbHObjectSymbolLocked.png;E:\AppClassification\res\images\dbImageSymbol.png;E:\AppClassification\res\images\dbCalibratedImageSymbol.png;E:\AppClassification\res\images\dbContainerSymbolLocked.png;E:\AppClassification\res\images\dbContainerSymbol.png;E:\AppClassification\res\images\dbMaterialSymbol.png;E:\AppClassification\res\images\dbLabelSymbol.png;E:\AppClassification\res\images\dbCloudSymbol.png;E:\AppClassification\res\images\dbCloudSymbolLocked.png;E:\AppClassification\res\images\dbLockSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbolLocked.png;E:\AppClassification\res\images\dbMeshSymbol.png;E:\AppClassification\res\images\dbMeshSymbolLocked.png;E:\AppClassification\res\images\dbMiscGeomSymbol.png;E:\AppClassification\res\images\dbMiscGeomSymbolLocked.png;E:\AppClassification\res\images\dbOctreeSymbol.png;E:\AppClassification\res\images\dbOctreeSymbolLocked.png;E:\AppClassification\res\images\dbPolylineSymbol.png;E:\AppClassification\res\images\ccPivotAuto.png;E:\AppClassification\res\images\ccPivotOff.png;E:\AppClassification\res\images\ccPivotOn.png;E:\AppClassification\res\images\dbGBLSensorSymbol.png;E:\AppClassification\res\images\dbCamSensorSymbol.png;E:\AppClassification\res\images\smallTrash.png;E:\AppClassification\res\images\smallRectangleSelect.png;E:\AppClassification\res\images\im3DxLogo.png;E:\AppClassification\res\images\smallPolygonSelect.png;E:\AppClassification\res\images\smallCancel.png;E:\AppClassification\res\images\smallPause.png;E:\AppClassification\res\images\smallPointDistance.png;E:\AppClassification\res\images\smallPointProperties.png;E:\AppClassification\res\images\smallPointsAngle.png;E:\AppClassification\res\images\smallReset.png;E:\AppClassification\res\images\smallSegmentIn.png;E:\AppClassification\res\images\smallSegmentOut.png;E:\AppClassification\res\images\smallValidate.png;E:\AppClassification\res\images\smallBasket.png;E:\AppClassification\res\images\smallRevert.png;E:\AppClassification\res\images\ccPointListPicking.png;E:\AppClassification\res\images\ccPointPicking.png;E:\AppClassification\res\images\ccSfArithmetic.png;E:\AppClassification\res\images\ccAddConstSF.png;E:\AppClassification\res\images\ccPickCenter.png;E:\AppClassification\res\images\ccViewXneg.png;E:\AppClassification\res\images\ccViewXpos.png;E:\AppClassification\res\images\ccViewYneg.png;E:\AppClassification\res\images\ccViewYpos.png;E:\AppClassification\res\images\ccViewZneg.png;E:\AppClassification\res\images\ccViewZpos.png;E:\AppClassification\res\images\ccCCExtract.png;E:\AppClassification\res\images\ccClone.png;E:\AppClassification\res\images\ccCloudCloudDistance.png;E:\AppClassification\res\images\ccCloudMeshDistance.png;E:\AppClassification\res\images\ccComputeStat.png;E:\AppClassification\res\images\ccDeleteSF.png;E:\AppClassification\res\images\ccFilterByValue.png;E:\AppClassification\res\images\ccMerge.png;E:\AppClassification\res\images\ccGaussianFilter.png;E:\AppClassification\res\images\ccGlobalZoom.png;E:\AppClassification\res\images\ccGradient.png;E:\AppClassification\res\images\ccHistogram.png;E:\AppClassification\res\images\ccInteractiveTransformation.png;E:\AppClassification\res\images\ccAlign.png;E:\AppClassification\res\images\ccRegister.png;E:\AppClassification\res\images\ccSampleCloud.png;E:\AppClassification\res\images\ccSamplePoints.png;E:\AppClassification\res\images\ccSegment.png;E:\AppClassification\res\images\ccStatTest.png;E:\AppClassification\res\images\ccConsole.png;E:\AppClassification\res\images\ccOpen.png;E:\AppClassification\res\images\ccPointSize.png;E:\AppClassification\res\images\ccSave.png;E:\AppClassification\res\images\ccDelete.png;E:\AppClassification\res\images\ccZoomIn.png;E:\AppClassification\res\images\ccBilateralFilter.png;E:\AppClassification\res\images\ccUnstack.png;E:\AppClassification\res\images\ccPencil.png;E:\AppClassification\res\images\ccPlus.png;E:\AppClassification\res\images\ccMinus.png;E:\AppClassification\res\images\ccLightParams.png;E:\AppClassification\res\images\imLogoV2Qt.png;E:\AppClassification\res\images\primBox.gif;E:\AppClassification\res\images\primPlane.gif;E:\AppClassification\res\images\primCone.gif;E:\AppClassification\res\images\primCylinder.gif;E:\AppClassification\res\images\ccViewIso1.png;E:\AppClassification\res\images\ccViewIso2.png;E:\AppClassification\res\images\primDish.gif;E:\AppClassification\res\images\primSphere.gif;E:\AppClassification\res\images\primTorus.gif;E:\AppClassification\res\images\typePositiveSF.png;E:\AppClassification\res\images\typeGrayColor.png;E:\AppClassification\res\images\typeNormal.png;E:\AppClassification\res\images\typeRgbCcolor.png;E:\AppClassification\res\images\typeSF.png;E:\AppClassification\res\images\typeXCoordinate.png;E:\AppClassification\res\images\typeYCoordinate.png;E:\AppClassification\res\images\typeZCoordinate.png;E:\AppClassification\res\images\ccTracePolyline.png;E:\AppClassification\res\images\qCompass.png;E:\AppClassification\res\images\mapIcon.png;E:\AppClassification\res\images\noFilter.png;E:\AppClassification\res\images\monitor.svg;E:\AppClassification\res\images\photo-camera.svg;E:\AppClassification\res\images\search.svg;E:\AppClassification\res\images\icon\cc_viewer_icon_16.png;E:\AppClassification\res\images\icon\cc_viewer_icon_32.png;E:\AppClassification\res\images\icon\cc_viewer_icon_64.png;E:\AppClassification\res\images\icon\cc_icon_16.png;E:\AppClassification\res\images\icon\cc_icon_32.png;E:\AppClassification\res\images\icon\cc_icon_64.png;E:\AppClassification\build\res\icones.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\AppClassification\build\qrc_icones.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating qrc_icones.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name icones --output E:/AppClassification/build/qrc_icones.cpp E:/AppClassification/res/icones.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\AppClassification\res\images\donate.png;E:\AppClassification\res\images\ccPickCenterAuto.png;E:\AppClassification\res\images\theme\snowman.png;E:\AppClassification\res\images\QTreeView\branch-closed.png;E:\AppClassification\res\images\QTreeView\branch-end.png;E:\AppClassification\res\images\QTreeView\branch-more.png;E:\AppClassification\res\images\QTreeView\branch-open.png;E:\AppClassification\res\images\QTreeView\vline.png;E:\AppClassification\res\images\gamepad.png;E:\AppClassification\res\images\restore.png;E:\AppClassification\res\images\square.png;E:\AppClassification\res\images\interactors.png;E:\AppClassification\res\images\oculus.png;E:\AppClassification\res\images\nvidia.png;E:\AppClassification\res\images\ccSwapUpDown.png;E:\AppClassification\res\images\unfoldSmall.png;E:\AppClassification\res\images\ccStereo.png;E:\AppClassification\res\images\ccSORFilter.png;E:\AppClassification\res\images\smallCSVFile.png;E:\AppClassification\res\images\smallSphere.png;E:\AppClassification\res\images\ccLevel.png;E:\AppClassification\res\images\ccGrid.png;E:\AppClassification\res\images\sectionExtraction.png;E:\AppClassification\res\images\orthoSections.png;E:\AppClassification\res\images\ccExit.png;E:\AppClassification\res\images\ccFullScreen.png;E:\AppClassification\res\images\ccSunLight.png;E:\AppClassification\res\images\ccClippingBox.png;E:\AppClassification\res\images\ccClippingBoxMultExport.png;E:\AppClassification\res\images\ccClippingBoxSingleExport.png;E:\AppClassification\res\images\ccGear.png;E:\AppClassification\res\images\ccCenteredPerspective32.png;E:\AppClassification\res\images\ccOrthoMode32.png;E:\AppClassification\res\images\ccViewerBasedPerspective32.png;E:\AppClassification\res\images\dbAreaLabelSymbol.png;E:\AppClassification\res\images\dbViewportSymbol.png;E:\AppClassification\res\images\dbHObjectSymbol.png;E:\AppClassification\res\images\dbHObjectSymbolLocked.png;E:\AppClassification\res\images\dbImageSymbol.png;E:\AppClassification\res\images\dbCalibratedImageSymbol.png;E:\AppClassification\res\images\dbContainerSymbolLocked.png;E:\AppClassification\res\images\dbContainerSymbol.png;E:\AppClassification\res\images\dbMaterialSymbol.png;E:\AppClassification\res\images\dbLabelSymbol.png;E:\AppClassification\res\images\dbCloudSymbol.png;E:\AppClassification\res\images\dbCloudSymbolLocked.png;E:\AppClassification\res\images\dbLockSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbolLocked.png;E:\AppClassification\res\images\dbMeshSymbol.png;E:\AppClassification\res\images\dbMeshSymbolLocked.png;E:\AppClassification\res\images\dbMiscGeomSymbol.png;E:\AppClassification\res\images\dbMiscGeomSymbolLocked.png;E:\AppClassification\res\images\dbOctreeSymbol.png;E:\AppClassification\res\images\dbOctreeSymbolLocked.png;E:\AppClassification\res\images\dbPolylineSymbol.png;E:\AppClassification\res\images\ccPivotAuto.png;E:\AppClassification\res\images\ccPivotOff.png;E:\AppClassification\res\images\ccPivotOn.png;E:\AppClassification\res\images\dbGBLSensorSymbol.png;E:\AppClassification\res\images\dbCamSensorSymbol.png;E:\AppClassification\res\images\smallTrash.png;E:\AppClassification\res\images\smallRectangleSelect.png;E:\AppClassification\res\images\im3DxLogo.png;E:\AppClassification\res\images\smallPolygonSelect.png;E:\AppClassification\res\images\smallCancel.png;E:\AppClassification\res\images\smallPause.png;E:\AppClassification\res\images\smallPointDistance.png;E:\AppClassification\res\images\smallPointProperties.png;E:\AppClassification\res\images\smallPointsAngle.png;E:\AppClassification\res\images\smallReset.png;E:\AppClassification\res\images\smallSegmentIn.png;E:\AppClassification\res\images\smallSegmentOut.png;E:\AppClassification\res\images\smallValidate.png;E:\AppClassification\res\images\smallBasket.png;E:\AppClassification\res\images\smallRevert.png;E:\AppClassification\res\images\ccPointListPicking.png;E:\AppClassification\res\images\ccPointPicking.png;E:\AppClassification\res\images\ccSfArithmetic.png;E:\AppClassification\res\images\ccAddConstSF.png;E:\AppClassification\res\images\ccPickCenter.png;E:\AppClassification\res\images\ccViewXneg.png;E:\AppClassification\res\images\ccViewXpos.png;E:\AppClassification\res\images\ccViewYneg.png;E:\AppClassification\res\images\ccViewYpos.png;E:\AppClassification\res\images\ccViewZneg.png;E:\AppClassification\res\images\ccViewZpos.png;E:\AppClassification\res\images\ccCCExtract.png;E:\AppClassification\res\images\ccClone.png;E:\AppClassification\res\images\ccCloudCloudDistance.png;E:\AppClassification\res\images\ccCloudMeshDistance.png;E:\AppClassification\res\images\ccComputeStat.png;E:\AppClassification\res\images\ccDeleteSF.png;E:\AppClassification\res\images\ccFilterByValue.png;E:\AppClassification\res\images\ccMerge.png;E:\AppClassification\res\images\ccGaussianFilter.png;E:\AppClassification\res\images\ccGlobalZoom.png;E:\AppClassification\res\images\ccGradient.png;E:\AppClassification\res\images\ccHistogram.png;E:\AppClassification\res\images\ccInteractiveTransformation.png;E:\AppClassification\res\images\ccAlign.png;E:\AppClassification\res\images\ccRegister.png;E:\AppClassification\res\images\ccSampleCloud.png;E:\AppClassification\res\images\ccSamplePoints.png;E:\AppClassification\res\images\ccSegment.png;E:\AppClassification\res\images\ccStatTest.png;E:\AppClassification\res\images\ccConsole.png;E:\AppClassification\res\images\ccOpen.png;E:\AppClassification\res\images\ccPointSize.png;E:\AppClassification\res\images\ccSave.png;E:\AppClassification\res\images\ccDelete.png;E:\AppClassification\res\images\ccZoomIn.png;E:\AppClassification\res\images\ccBilateralFilter.png;E:\AppClassification\res\images\ccUnstack.png;E:\AppClassification\res\images\ccPencil.png;E:\AppClassification\res\images\ccPlus.png;E:\AppClassification\res\images\ccMinus.png;E:\AppClassification\res\images\ccLightParams.png;E:\AppClassification\res\images\imLogoV2Qt.png;E:\AppClassification\res\images\primBox.gif;E:\AppClassification\res\images\primPlane.gif;E:\AppClassification\res\images\primCone.gif;E:\AppClassification\res\images\primCylinder.gif;E:\AppClassification\res\images\ccViewIso1.png;E:\AppClassification\res\images\ccViewIso2.png;E:\AppClassification\res\images\primDish.gif;E:\AppClassification\res\images\primSphere.gif;E:\AppClassification\res\images\primTorus.gif;E:\AppClassification\res\images\typePositiveSF.png;E:\AppClassification\res\images\typeGrayColor.png;E:\AppClassification\res\images\typeNormal.png;E:\AppClassification\res\images\typeRgbCcolor.png;E:\AppClassification\res\images\typeSF.png;E:\AppClassification\res\images\typeXCoordinate.png;E:\AppClassification\res\images\typeYCoordinate.png;E:\AppClassification\res\images\typeZCoordinate.png;E:\AppClassification\res\images\ccTracePolyline.png;E:\AppClassification\res\images\qCompass.png;E:\AppClassification\res\images\mapIcon.png;E:\AppClassification\res\images\noFilter.png;E:\AppClassification\res\images\monitor.svg;E:\AppClassification\res\images\photo-camera.svg;E:\AppClassification\res\images\search.svg;E:\AppClassification\res\images\icon\cc_viewer_icon_16.png;E:\AppClassification\res\images\icon\cc_viewer_icon_32.png;E:\AppClassification\res\images\icon\cc_viewer_icon_64.png;E:\AppClassification\res\images\icon\cc_icon_16.png;E:\AppClassification\res\images\icon\cc_icon_32.png;E:\AppClassification\res\images\icon\cc_icon_64.png;E:\AppClassification\build\res\icones.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\AppClassification\build\qrc_icones.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating qrc_icones.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name icones --output E:/AppClassification/build/qrc_icones.cpp E:/AppClassification/res/icones.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\AppClassification\res\images\donate.png;E:\AppClassification\res\images\ccPickCenterAuto.png;E:\AppClassification\res\images\theme\snowman.png;E:\AppClassification\res\images\QTreeView\branch-closed.png;E:\AppClassification\res\images\QTreeView\branch-end.png;E:\AppClassification\res\images\QTreeView\branch-more.png;E:\AppClassification\res\images\QTreeView\branch-open.png;E:\AppClassification\res\images\QTreeView\vline.png;E:\AppClassification\res\images\gamepad.png;E:\AppClassification\res\images\restore.png;E:\AppClassification\res\images\square.png;E:\AppClassification\res\images\interactors.png;E:\AppClassification\res\images\oculus.png;E:\AppClassification\res\images\nvidia.png;E:\AppClassification\res\images\ccSwapUpDown.png;E:\AppClassification\res\images\unfoldSmall.png;E:\AppClassification\res\images\ccStereo.png;E:\AppClassification\res\images\ccSORFilter.png;E:\AppClassification\res\images\smallCSVFile.png;E:\AppClassification\res\images\smallSphere.png;E:\AppClassification\res\images\ccLevel.png;E:\AppClassification\res\images\ccGrid.png;E:\AppClassification\res\images\sectionExtraction.png;E:\AppClassification\res\images\orthoSections.png;E:\AppClassification\res\images\ccExit.png;E:\AppClassification\res\images\ccFullScreen.png;E:\AppClassification\res\images\ccSunLight.png;E:\AppClassification\res\images\ccClippingBox.png;E:\AppClassification\res\images\ccClippingBoxMultExport.png;E:\AppClassification\res\images\ccClippingBoxSingleExport.png;E:\AppClassification\res\images\ccGear.png;E:\AppClassification\res\images\ccCenteredPerspective32.png;E:\AppClassification\res\images\ccOrthoMode32.png;E:\AppClassification\res\images\ccViewerBasedPerspective32.png;E:\AppClassification\res\images\dbAreaLabelSymbol.png;E:\AppClassification\res\images\dbViewportSymbol.png;E:\AppClassification\res\images\dbHObjectSymbol.png;E:\AppClassification\res\images\dbHObjectSymbolLocked.png;E:\AppClassification\res\images\dbImageSymbol.png;E:\AppClassification\res\images\dbCalibratedImageSymbol.png;E:\AppClassification\res\images\dbContainerSymbolLocked.png;E:\AppClassification\res\images\dbContainerSymbol.png;E:\AppClassification\res\images\dbMaterialSymbol.png;E:\AppClassification\res\images\dbLabelSymbol.png;E:\AppClassification\res\images\dbCloudSymbol.png;E:\AppClassification\res\images\dbCloudSymbolLocked.png;E:\AppClassification\res\images\dbLockSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbolLocked.png;E:\AppClassification\res\images\dbMeshSymbol.png;E:\AppClassification\res\images\dbMeshSymbolLocked.png;E:\AppClassification\res\images\dbMiscGeomSymbol.png;E:\AppClassification\res\images\dbMiscGeomSymbolLocked.png;E:\AppClassification\res\images\dbOctreeSymbol.png;E:\AppClassification\res\images\dbOctreeSymbolLocked.png;E:\AppClassification\res\images\dbPolylineSymbol.png;E:\AppClassification\res\images\ccPivotAuto.png;E:\AppClassification\res\images\ccPivotOff.png;E:\AppClassification\res\images\ccPivotOn.png;E:\AppClassification\res\images\dbGBLSensorSymbol.png;E:\AppClassification\res\images\dbCamSensorSymbol.png;E:\AppClassification\res\images\smallTrash.png;E:\AppClassification\res\images\smallRectangleSelect.png;E:\AppClassification\res\images\im3DxLogo.png;E:\AppClassification\res\images\smallPolygonSelect.png;E:\AppClassification\res\images\smallCancel.png;E:\AppClassification\res\images\smallPause.png;E:\AppClassification\res\images\smallPointDistance.png;E:\AppClassification\res\images\smallPointProperties.png;E:\AppClassification\res\images\smallPointsAngle.png;E:\AppClassification\res\images\smallReset.png;E:\AppClassification\res\images\smallSegmentIn.png;E:\AppClassification\res\images\smallSegmentOut.png;E:\AppClassification\res\images\smallValidate.png;E:\AppClassification\res\images\smallBasket.png;E:\AppClassification\res\images\smallRevert.png;E:\AppClassification\res\images\ccPointListPicking.png;E:\AppClassification\res\images\ccPointPicking.png;E:\AppClassification\res\images\ccSfArithmetic.png;E:\AppClassification\res\images\ccAddConstSF.png;E:\AppClassification\res\images\ccPickCenter.png;E:\AppClassification\res\images\ccViewXneg.png;E:\AppClassification\res\images\ccViewXpos.png;E:\AppClassification\res\images\ccViewYneg.png;E:\AppClassification\res\images\ccViewYpos.png;E:\AppClassification\res\images\ccViewZneg.png;E:\AppClassification\res\images\ccViewZpos.png;E:\AppClassification\res\images\ccCCExtract.png;E:\AppClassification\res\images\ccClone.png;E:\AppClassification\res\images\ccCloudCloudDistance.png;E:\AppClassification\res\images\ccCloudMeshDistance.png;E:\AppClassification\res\images\ccComputeStat.png;E:\AppClassification\res\images\ccDeleteSF.png;E:\AppClassification\res\images\ccFilterByValue.png;E:\AppClassification\res\images\ccMerge.png;E:\AppClassification\res\images\ccGaussianFilter.png;E:\AppClassification\res\images\ccGlobalZoom.png;E:\AppClassification\res\images\ccGradient.png;E:\AppClassification\res\images\ccHistogram.png;E:\AppClassification\res\images\ccInteractiveTransformation.png;E:\AppClassification\res\images\ccAlign.png;E:\AppClassification\res\images\ccRegister.png;E:\AppClassification\res\images\ccSampleCloud.png;E:\AppClassification\res\images\ccSamplePoints.png;E:\AppClassification\res\images\ccSegment.png;E:\AppClassification\res\images\ccStatTest.png;E:\AppClassification\res\images\ccConsole.png;E:\AppClassification\res\images\ccOpen.png;E:\AppClassification\res\images\ccPointSize.png;E:\AppClassification\res\images\ccSave.png;E:\AppClassification\res\images\ccDelete.png;E:\AppClassification\res\images\ccZoomIn.png;E:\AppClassification\res\images\ccBilateralFilter.png;E:\AppClassification\res\images\ccUnstack.png;E:\AppClassification\res\images\ccPencil.png;E:\AppClassification\res\images\ccPlus.png;E:\AppClassification\res\images\ccMinus.png;E:\AppClassification\res\images\ccLightParams.png;E:\AppClassification\res\images\imLogoV2Qt.png;E:\AppClassification\res\images\primBox.gif;E:\AppClassification\res\images\primPlane.gif;E:\AppClassification\res\images\primCone.gif;E:\AppClassification\res\images\primCylinder.gif;E:\AppClassification\res\images\ccViewIso1.png;E:\AppClassification\res\images\ccViewIso2.png;E:\AppClassification\res\images\primDish.gif;E:\AppClassification\res\images\primSphere.gif;E:\AppClassification\res\images\primTorus.gif;E:\AppClassification\res\images\typePositiveSF.png;E:\AppClassification\res\images\typeGrayColor.png;E:\AppClassification\res\images\typeNormal.png;E:\AppClassification\res\images\typeRgbCcolor.png;E:\AppClassification\res\images\typeSF.png;E:\AppClassification\res\images\typeXCoordinate.png;E:\AppClassification\res\images\typeYCoordinate.png;E:\AppClassification\res\images\typeZCoordinate.png;E:\AppClassification\res\images\ccTracePolyline.png;E:\AppClassification\res\images\qCompass.png;E:\AppClassification\res\images\mapIcon.png;E:\AppClassification\res\images\noFilter.png;E:\AppClassification\res\images\monitor.svg;E:\AppClassification\res\images\photo-camera.svg;E:\AppClassification\res\images\search.svg;E:\AppClassification\res\images\icon\cc_viewer_icon_16.png;E:\AppClassification\res\images\icon\cc_viewer_icon_32.png;E:\AppClassification\res\images\icon\cc_viewer_icon_64.png;E:\AppClassification\res\images\icon\cc_icon_16.png;E:\AppClassification\res\images\icon\cc_icon_32.png;E:\AppClassification\res\images\icon\cc_icon_64.png;E:\AppClassification\build\res\icones.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\AppClassification\build\qrc_icones.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating qrc_icones.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Qt\5.15.2\msvc2019_64\bin\rcc.exe --name icones --output E:/AppClassification/build/qrc_icones.cpp E:/AppClassification/res/icones.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\AppClassification\res\images\donate.png;E:\AppClassification\res\images\ccPickCenterAuto.png;E:\AppClassification\res\images\theme\snowman.png;E:\AppClassification\res\images\QTreeView\branch-closed.png;E:\AppClassification\res\images\QTreeView\branch-end.png;E:\AppClassification\res\images\QTreeView\branch-more.png;E:\AppClassification\res\images\QTreeView\branch-open.png;E:\AppClassification\res\images\QTreeView\vline.png;E:\AppClassification\res\images\gamepad.png;E:\AppClassification\res\images\restore.png;E:\AppClassification\res\images\square.png;E:\AppClassification\res\images\interactors.png;E:\AppClassification\res\images\oculus.png;E:\AppClassification\res\images\nvidia.png;E:\AppClassification\res\images\ccSwapUpDown.png;E:\AppClassification\res\images\unfoldSmall.png;E:\AppClassification\res\images\ccStereo.png;E:\AppClassification\res\images\ccSORFilter.png;E:\AppClassification\res\images\smallCSVFile.png;E:\AppClassification\res\images\smallSphere.png;E:\AppClassification\res\images\ccLevel.png;E:\AppClassification\res\images\ccGrid.png;E:\AppClassification\res\images\sectionExtraction.png;E:\AppClassification\res\images\orthoSections.png;E:\AppClassification\res\images\ccExit.png;E:\AppClassification\res\images\ccFullScreen.png;E:\AppClassification\res\images\ccSunLight.png;E:\AppClassification\res\images\ccClippingBox.png;E:\AppClassification\res\images\ccClippingBoxMultExport.png;E:\AppClassification\res\images\ccClippingBoxSingleExport.png;E:\AppClassification\res\images\ccGear.png;E:\AppClassification\res\images\ccCenteredPerspective32.png;E:\AppClassification\res\images\ccOrthoMode32.png;E:\AppClassification\res\images\ccViewerBasedPerspective32.png;E:\AppClassification\res\images\dbAreaLabelSymbol.png;E:\AppClassification\res\images\dbViewportSymbol.png;E:\AppClassification\res\images\dbHObjectSymbol.png;E:\AppClassification\res\images\dbHObjectSymbolLocked.png;E:\AppClassification\res\images\dbImageSymbol.png;E:\AppClassification\res\images\dbCalibratedImageSymbol.png;E:\AppClassification\res\images\dbContainerSymbolLocked.png;E:\AppClassification\res\images\dbContainerSymbol.png;E:\AppClassification\res\images\dbMaterialSymbol.png;E:\AppClassification\res\images\dbLabelSymbol.png;E:\AppClassification\res\images\dbCloudSymbol.png;E:\AppClassification\res\images\dbCloudSymbolLocked.png;E:\AppClassification\res\images\dbLockSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbol.png;E:\AppClassification\res\images\dbSubMeshSymbolLocked.png;E:\AppClassification\res\images\dbMeshSymbol.png;E:\AppClassification\res\images\dbMeshSymbolLocked.png;E:\AppClassification\res\images\dbMiscGeomSymbol.png;E:\AppClassification\res\images\dbMiscGeomSymbolLocked.png;E:\AppClassification\res\images\dbOctreeSymbol.png;E:\AppClassification\res\images\dbOctreeSymbolLocked.png;E:\AppClassification\res\images\dbPolylineSymbol.png;E:\AppClassification\res\images\ccPivotAuto.png;E:\AppClassification\res\images\ccPivotOff.png;E:\AppClassification\res\images\ccPivotOn.png;E:\AppClassification\res\images\dbGBLSensorSymbol.png;E:\AppClassification\res\images\dbCamSensorSymbol.png;E:\AppClassification\res\images\smallTrash.png;E:\AppClassification\res\images\smallRectangleSelect.png;E:\AppClassification\res\images\im3DxLogo.png;E:\AppClassification\res\images\smallPolygonSelect.png;E:\AppClassification\res\images\smallCancel.png;E:\AppClassification\res\images\smallPause.png;E:\AppClassification\res\images\smallPointDistance.png;E:\AppClassification\res\images\smallPointProperties.png;E:\AppClassification\res\images\smallPointsAngle.png;E:\AppClassification\res\images\smallReset.png;E:\AppClassification\res\images\smallSegmentIn.png;E:\AppClassification\res\images\smallSegmentOut.png;E:\AppClassification\res\images\smallValidate.png;E:\AppClassification\res\images\smallBasket.png;E:\AppClassification\res\images\smallRevert.png;E:\AppClassification\res\images\ccPointListPicking.png;E:\AppClassification\res\images\ccPointPicking.png;E:\AppClassification\res\images\ccSfArithmetic.png;E:\AppClassification\res\images\ccAddConstSF.png;E:\AppClassification\res\images\ccPickCenter.png;E:\AppClassification\res\images\ccViewXneg.png;E:\AppClassification\res\images\ccViewXpos.png;E:\AppClassification\res\images\ccViewYneg.png;E:\AppClassification\res\images\ccViewYpos.png;E:\AppClassification\res\images\ccViewZneg.png;E:\AppClassification\res\images\ccViewZpos.png;E:\AppClassification\res\images\ccCCExtract.png;E:\AppClassification\res\images\ccClone.png;E:\AppClassification\res\images\ccCloudCloudDistance.png;E:\AppClassification\res\images\ccCloudMeshDistance.png;E:\AppClassification\res\images\ccComputeStat.png;E:\AppClassification\res\images\ccDeleteSF.png;E:\AppClassification\res\images\ccFilterByValue.png;E:\AppClassification\res\images\ccMerge.png;E:\AppClassification\res\images\ccGaussianFilter.png;E:\AppClassification\res\images\ccGlobalZoom.png;E:\AppClassification\res\images\ccGradient.png;E:\AppClassification\res\images\ccHistogram.png;E:\AppClassification\res\images\ccInteractiveTransformation.png;E:\AppClassification\res\images\ccAlign.png;E:\AppClassification\res\images\ccRegister.png;E:\AppClassification\res\images\ccSampleCloud.png;E:\AppClassification\res\images\ccSamplePoints.png;E:\AppClassification\res\images\ccSegment.png;E:\AppClassification\res\images\ccStatTest.png;E:\AppClassification\res\images\ccConsole.png;E:\AppClassification\res\images\ccOpen.png;E:\AppClassification\res\images\ccPointSize.png;E:\AppClassification\res\images\ccSave.png;E:\AppClassification\res\images\ccDelete.png;E:\AppClassification\res\images\ccZoomIn.png;E:\AppClassification\res\images\ccBilateralFilter.png;E:\AppClassification\res\images\ccUnstack.png;E:\AppClassification\res\images\ccPencil.png;E:\AppClassification\res\images\ccPlus.png;E:\AppClassification\res\images\ccMinus.png;E:\AppClassification\res\images\ccLightParams.png;E:\AppClassification\res\images\imLogoV2Qt.png;E:\AppClassification\res\images\primBox.gif;E:\AppClassification\res\images\primPlane.gif;E:\AppClassification\res\images\primCone.gif;E:\AppClassification\res\images\primCylinder.gif;E:\AppClassification\res\images\ccViewIso1.png;E:\AppClassification\res\images\ccViewIso2.png;E:\AppClassification\res\images\primDish.gif;E:\AppClassification\res\images\primSphere.gif;E:\AppClassification\res\images\primTorus.gif;E:\AppClassification\res\images\typePositiveSF.png;E:\AppClassification\res\images\typeGrayColor.png;E:\AppClassification\res\images\typeNormal.png;E:\AppClassification\res\images\typeRgbCcolor.png;E:\AppClassification\res\images\typeSF.png;E:\AppClassification\res\images\typeXCoordinate.png;E:\AppClassification\res\images\typeYCoordinate.png;E:\AppClassification\res\images\typeZCoordinate.png;E:\AppClassification\res\images\ccTracePolyline.png;E:\AppClassification\res\images\qCompass.png;E:\AppClassification\res\images\mapIcon.png;E:\AppClassification\res\images\noFilter.png;E:\AppClassification\res\images\monitor.svg;E:\AppClassification\res\images\photo-camera.svg;E:\AppClassification\res\images\search.svg;E:\AppClassification\res\images\icon\cc_viewer_icon_16.png;E:\AppClassification\res\images\icon\cc_viewer_icon_32.png;E:\AppClassification\res\images\icon\cc_viewer_icon_64.png;E:\AppClassification\res\images\icon\cc_icon_16.png;E:\AppClassification\res\images\icon\cc_icon_32.png;E:\AppClassification\res\images\icon\cc_icon_64.png;E:\AppClassification\build\res\icones.qrc.depends;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\AppClassification\build\qrc_icones.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\AppClassification\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule E:/AppClassification/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/AppClassification -BE:/AppClassification/build --check-stamp-file E:/AppClassification/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\WindowsPaths.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5Config.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeCXXCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeRCCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeSystem.cmake;E:\AppClassification\cmake\modules\FindCloudCompare.cmake;E:\AppClassification\res\icones.qrc;E:\AppClassification\res\resources.qrc;E:\libs\CGAL\lib\cmake\CGAL\CGALConfig.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigBuildVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Common.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_CreateSingleSourceCGALProgram.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_GeneratorSpecificSettings.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Macros.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SCM.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupCGALDependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupVLD.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_TweakFindBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_VersionUtils.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_add_test.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_enable_end_of_configuration_hook.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_setup_target_dependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_target_use_TBB.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindEigen3.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMPXX.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindMPFR.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfig.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfigVersion.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config-version.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\AppClassification\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule E:/AppClassification/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/AppClassification -BE:/AppClassification/build --check-stamp-file E:/AppClassification/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\WindowsPaths.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5Config.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeCXXCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeRCCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeSystem.cmake;E:\AppClassification\cmake\modules\FindCloudCompare.cmake;E:\AppClassification\res\icones.qrc;E:\AppClassification\res\resources.qrc;E:\libs\CGAL\lib\cmake\CGAL\CGALConfig.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigBuildVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Common.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_CreateSingleSourceCGALProgram.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_GeneratorSpecificSettings.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Macros.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SCM.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupCGALDependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupVLD.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_TweakFindBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_VersionUtils.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_add_test.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_enable_end_of_configuration_hook.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_setup_target_dependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_target_use_TBB.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindEigen3.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMPXX.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindMPFR.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfig.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfigVersion.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config-version.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\AppClassification\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule E:/AppClassification/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/AppClassification -BE:/AppClassification/build --check-stamp-file E:/AppClassification/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\WindowsPaths.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5Config.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeCXXCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeRCCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeSystem.cmake;E:\AppClassification\cmake\modules\FindCloudCompare.cmake;E:\AppClassification\res\icones.qrc;E:\AppClassification\res\resources.qrc;E:\libs\CGAL\lib\cmake\CGAL\CGALConfig.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigBuildVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Common.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_CreateSingleSourceCGALProgram.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_GeneratorSpecificSettings.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Macros.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SCM.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupCGALDependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupVLD.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_TweakFindBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_VersionUtils.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_add_test.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_enable_end_of_configuration_hook.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_setup_target_dependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_target_use_TBB.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindEigen3.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMPXX.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindMPFR.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfig.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfigVersion.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config-version.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\AppClassification\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule E:/AppClassification/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/AppClassification -BE:/AppClassification/build --check-stamp-file E:/AppClassification/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.20\Modules\Platform\WindowsPaths.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5Config.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGL\Qt5OpenGLConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5OpenGLExtensions\Qt5OpenGLExtensionsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeCXXCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeRCCompiler.cmake;E:\AppClassification\build\CMakeFiles\3.20.1\CMakeSystem.cmake;E:\AppClassification\cmake\modules\FindCloudCompare.cmake;E:\AppClassification\res\icones.qrc;E:\AppClassification\res\resources.qrc;E:\libs\CGAL\lib\cmake\CGAL\CGALConfig.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigBuildVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGALConfigVersion.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Common.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_CreateSingleSourceCGALProgram.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_GeneratorSpecificSettings.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_Macros.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SCM.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupCGALDependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_SetupVLD.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_TweakFindBoost.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_VersionUtils.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_add_test.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_enable_end_of_configuration_hook.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_setup_target_dependencies.cmake;E:\libs\CGAL\lib\cmake\CGAL\CGAL_target_use_TBB.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindEigen3.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMP.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindGMPXX.cmake;E:\libs\CGAL\lib\cmake\CGAL\FindMPFR.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfig.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\Boost-1.74.0\BoostConfigVersion.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config-version.cmake;E:\libs\boost_1_74_0\lib64-msvc-14.2\cmake\boost_headers-1.74.0\boost_headers-config.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\AppClassification\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\AppClassification\build\CloudClassifier_autogen\mocs_compilation_Debug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="E:\AppClassification\src\main.cpp" />
+    <ClCompile Include="E:\AppClassification\src\mainwindow.cpp" />
+    <ClCompile Include="E:\AppClassification\src\ccviewer3d.cpp" />
+    <ClCompile Include="E:\AppClassification\src\Classifier.cpp" />
+    <ClCompile Include="E:\AppClassification\src\Analysis.cpp" />
+    <ClCompile Include="E:\AppClassification\src\FeatureManager.cpp" />
+    <ClCompile Include="E:\AppClassification\src\Input.cpp" />
+    <ClCompile Include="E:\AppClassification\src\LabelManager.cpp" />
+    <ClCompile Include="E:\AppClassification\src\LabelView.cpp" />
+    <ClCompile Include="E:\AppClassification\src\FeatureView.cpp" />
+    <ClCompile Include="E:\AppClassification\src\EffectView.cpp" />
+    <ClCompile Include="E:\AppClassification\src\LabelController.cpp" />
+    <ClCompile Include="E:\AppClassification\src\FeatureController.cpp" />
+    <ClCompile Include="E:\AppClassification\src\EffectController.cpp" />
+    <ClCompile Include="E:\AppClassification\src\ClassificationModel.cpp" />
+    <ClCompile Include="E:\AppClassification\src\RunPopup.cpp" />
+    <ClCompile Include="E:\AppClassification\src\WProgressDialog.cpp" />
+    <ClCompile Include="E:\AppClassification\src\TrainView.cpp" />
+    <ClCompile Include="E:\AppClassification\src\TrainController.cpp" />
+    <ClCompile Include="E:\AppClassification\src\TrainModel.cpp" />
+    <ClCompile Include="E:\AppClassification\src\BinaryCheck.cpp" />
+    <ClCompile Include="E:\AppClassification\src\Console.cpp" />
+    <ClCompile Include="E:\AppClassification\src\DeepLearningView.cpp" />
+    <ClCompile Include="E:\AppClassification\src\Process.cpp" />
+    <ClCompile Include="E:\AppClassification\build\qrc_resources.cpp" />
+    <ClCompile Include="E:\AppClassification\build\qrc_icones.cpp" />
+    <ClInclude Include="E:\AppClassification\src\mainwindow.h" />
+    <None Include="E:\AppClassification\src\mainwindow.ui">
+    </None>
+    <ClInclude Include="E:\AppClassification\src\ccviewer3d.h" />
+    <ClInclude Include="E:\AppClassification\src\Classifier.h" />
+    <ClInclude Include="E:\AppClassification\src\Analysis.h" />
+    <ClInclude Include="E:\AppClassification\src\FeatureManager.h" />
+    <ClInclude Include="E:\AppClassification\src\Input.h" />
+    <ClInclude Include="E:\AppClassification\src\LabelManager.h" />
+    <ClInclude Include="E:\AppClassification\src\EffectGroup.h" />
+    <ClInclude Include="E:\AppClassification\src\WeightGroup.h" />
+    <ClInclude Include="E:\AppClassification\src\LabelView.h" />
+    <ClInclude Include="E:\AppClassification\src\FeatureView.h" />
+    <ClInclude Include="E:\AppClassification\src\EffectView.h" />
+    <ClInclude Include="E:\AppClassification\src\LabelController.h" />
+    <ClInclude Include="E:\AppClassification\src\FeatureController.h" />
+    <ClInclude Include="E:\AppClassification\src\EffectController.h" />
+    <ClInclude Include="E:\AppClassification\src\ClassificationModel.h" />
+    <ClInclude Include="E:\AppClassification\src\RunPopup.h" />
+    <ClInclude Include="E:\AppClassification\src\WProgressDialog.h" />
+    <ClInclude Include="E:\AppClassification\src\TrainView.h" />
+    <ClInclude Include="E:\AppClassification\src\TrainController.h" />
+    <ClInclude Include="E:\AppClassification\src\TrainModel.h" />
+    <ClInclude Include="E:\AppClassification\src\BinaryCheck.h" />
+    <ClInclude Include="E:\AppClassification\src\ControllerGroup.h" />
+    <ClInclude Include="E:\AppClassification\src\Console.h" />
+    <ClInclude Include="E:\AppClassification\src\DeepLearningView.h" />
+    <ClInclude Include="E:\AppClassification\src\Process.h" />
+    <ClCompile Include="E:\AppClassification\build\CloudClassifier_autogen\mocs_compilation_Release.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="E:\AppClassification\build\CloudClassifier_autogen\mocs_compilation_MinSizeRel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="E:\AppClassification\build\CloudClassifier_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\AppClassification\build\ZERO_CHECK.vcxproj">
+      <Project>{5E8EED16-2D2D-38B8-B5D5-44E2D01300E2}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
